@@ -18,7 +18,7 @@ $username =""; $password = "";
 $Err="";
 
 if (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "login"){
-    include "./includes/logininclude.php";
+    include "./log.php";
 
 }
 

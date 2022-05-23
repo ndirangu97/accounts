@@ -19,8 +19,6 @@
             }
                            
             
-            
-            
         }
         
         if ($err=="") {
@@ -32,7 +30,7 @@
             if ($write) {
            
                    
-                $info->message ="Fees has been set successfully";
+                $info->message ="Fees  set for Class  $cl  $m successfully as $fees";
   
                 $info->type = "set";
                 echo json_encode($info);
@@ -50,10 +48,7 @@
     }else {
        $err="ERROR : No such class or year in database";
         
-            $info->message =$err;
-  
-            $info->type = "err";
-            echo json_encode($info);
+            
 
     }
     if ($err!="") {
