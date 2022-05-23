@@ -1,0 +1,492 @@
+<?php
+
+            $id = $_GET['id'];
+
+            if (!null) {
+
+              $sql = false;
+              $sql = "SELECT * FROM students WHERE userid=$id";
+
+              $results = $DB->read($sql, []);
+              if (is_array($results)) {
+                $results = $results[0];
+              }
+
+              $sql = false;
+
+              $sql = "SELECT * FROM pupils WHERE userid= '$id'";
+              $read = $DB->read($sql, []);
+
+              if ($read) {
+
+                $read = $read[0];
+
+
+
+                $first = 0;
+                $second = 0;
+                $third = 0;
+                $firstpayed = 0;
+                $secondpayed = 0;
+                $thirdpayed = 0;
+                $firstdue = 0;
+                $seconddue = 0;
+                $thirddue = 0;
+
+
+                if ($read->first != null) {
+                  $first = $read->first;
+                }
+                if ($read->second != null) {
+                  $second = $read->second;
+                }
+                if ($read->third != null) {
+                  $third = $read->third;
+                }
+                if ($read->firstpayed != null) {
+                  $firstpayed = $read->firstpayed;
+                }
+                if ($read->secondpayed != null) {
+                  $secondpayed = $read->secondpayed;
+                }
+                if ($read->thirdpayed != null) {
+                  $thirdpayed = $read->thirdpayed;
+                }
+                if ($read->firstdue != null) {
+                  $firstdue = $read->firstdue;
+                }
+                if ($read->seconddue != null) {
+                  $seconddue = $read->seconddue;
+                }
+                if ($read->thirddue != null) {
+                  $thirddue = $read->thirddue;
+                }
+
+                $totaldue = ($firstdue) + ($seconddue) + ($thirddue);
+              } else {
+                echo 333;
+              }
+
+
+
+              echo "
+              
+            <div id='dv'
+            style='
+              flex-basis: 100%;
+              display: flex;
+              flex-direction:column;
+              justify-content: center;
+              align-items:center;
+              position: relative;
+            
+              
+              
+            '
+          >
+          <h4> <u>Fees Structure</u></h4>
+          <table width='90%'  >
+          <thead>
+          <tr >
+           <th>TERM</th>
+           <th>MONTH</th>
+           <th>FEES</th>
+           <th>PAID</th>
+           <th>BALANCE</th>
+          </tr>
+          </thead>
+          <tbody>
+         <td  >
+          <tr>
+            <th rowspan='4'>TERM 1</th>
+            <!-- <td rowspan='3'>ITEM 2</td> -->
+            <th style='color:black'>January</th>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+           
+           
+           
+          
+           <tr>
+            <td>February</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+           <tr>
+            <td>March</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+         </td>
+         <td >
+          <tr>
+            <th rowspan='4'>TERM 1</th>
+            <!-- <td rowspan='3'>ITEM 2</td> -->
+            <td>January</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+           
+           
+           
+          
+           <tr>
+            <td>February</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+           <tr>
+            <td>March</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+         </td>
+         <td>
+          <tr>
+            <th rowspan='4'>TERM 1</th>
+            <!-- <td rowspan='3'>ITEM 2</td> -->
+            <td>January</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+           
+           
+           
+          
+           <tr>
+            <td>February</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+           <tr>
+            <td >March</td>
+            <td>300</td>
+            <td>200</td>
+            <td>100</td>
+           </tr>
+         </td>
+         <td >
+          <tr >
+            <th rowspan='4'>BALANCE</th>
+            <!-- <td rowspan='3'>ITEM 2</td> -->
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td >100</td>
+           </tr>
+           
+           
+           
+          
+           
+          
+         </td>
+         </tbody>
+         </table>
+         
+          </div>
+            
+            
+            
+            ";
+            } else {
+              echo  'Error Occured';
+            }
+
+
+
+            ?>
+
+
+
+             .bodyWrapper {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 600px;
+      width: 100%;
+      overflow-y: hidden;
+      
+    }
+    .content-table{
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.9em;
+      height: 80%;
+      border-radius: 5px 5px 0 0 ;
+      overflow: hidden;
+      box-shadow: 0  0 20px rgba(0,0,0,0.15);
+    }
+    .content-table thead tr{
+      background: #009879;
+      color: #ffffff;
+      text-align: left;
+      font-weight: bold;
+    }
+    .content-table th,
+    .content-table td{
+      padding: 12px 15px;
+    }
+    .content-table tbody tr{
+      border-bottom: 1px solid #dddddd;
+    }
+    .content-table tbody tr:nth-last-of-type(even){
+      background: #b1afaf;
+    }
+    .content-table tbody tr:last-of-type{
+      border-bottom: 2px solid #009879;
+    }
+
+    
+          <table width='90%' class='content-table' >
+            <thead>
+              <tr >
+              <th>TERM</th>
+              <th>MONTH</th>
+              <th>FEES</th>
+              <th>PAID</th>
+              <th>BALANCE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <tr>
+                  <th rowspan='4'>TERM 1</th>
+                  <!-- <td rowspan='3'>ITEM 2</td> -->
+                  <th style='color:black'>January</th>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+                
+                
+                
+                
+                <tr>
+                  <td>February</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>March</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+              </tr>
+              <tr  >
+                <tr>
+                  <th rowspan='4'>TERM 1</th>
+                  <!-- <td rowspan='3'>ITEM 2</td> -->
+                  <td>January</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+                
+                
+                
+                
+                <tr>
+                  <td>February</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>March</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+              </tr>
+              <tr>
+                <tr>
+                  <th rowspan='4'>TERM 1</th>
+                  <!-- <td rowspan='3'>ITEM 2</td> -->
+                  <td>January</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+                
+                
+                
+                
+                <tr>
+                  <td>February</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td >March</td>
+                  <td>300</td>
+                  <td>200</td>
+                  <td >100</td>
+                </tr>
+              </tr>
+              <tr>
+                <tr >
+                  <th rowspan='4'>BALANCE</th>
+                  <!-- <td rowspan='3'>ITEM 2</td> -->
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ><b>100</b></td>
+                </tr>
+                
+                
+                
+                
+                
+                
+              </tr>
+           </tbody>
+           </table>
+
+
+            <div id="fee" style="flex-basis:50%;display:none;justify-content:center;flex-direction:column;margin-top:-200px;">
+
+              <div style="display:flex;align-items:center;flex-direction:column">
+                <h5 style="margin-bottom:40px"> Pay fees</h5>
+                <div style="display: flex;">
+                  <div style="margin-left: 60px;">
+                    <div><label for="class">Term: </label></div>
+                    <span id="cErr"></span>
+                    <select name="class" id="cl2" style="width: 60px;border: 1px solid #7c7cff ;">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+
+                    </select>
+                  </div>
+                  <div style="margin-left: 60px;">
+
+                    <div>Fees</div>
+                    <input type="text" id="cl3" name="" id="">
+                  </div>
+                </div>
+                <div style="margin-top: 20px;"><button style="width: 200px;" onclick="setFees()"><b>Pay Fees</b></button></div>
+              </div>
+
+
+            </div>
+
+
+
+
+
+
+             <?php
+
+            $id = $_GET['id'];
+
+            if (!null) {
+
+              $sql = false;
+              $sql = "SELECT * FROM students WHERE userid=$id";
+
+              $results = $DB->read($sql, []);
+              if (is_array($results)) {
+                $results = $results[0];
+              }
+
+              $sql = false;
+
+              $sql = "SELECT * FROM pupils WHERE userid= '$id'";
+              $read = $DB->read($sql, []);
+
+              if ($read) {
+
+                $read = $read[0];
+
+
+
+                $first = 0;
+                $second = 0;
+                $third = 0;
+                $firstpayed = 0;
+                $secondpayed = 0;
+                $thirdpayed = 0;
+                $firstdue = 0;
+                $seconddue = 0;
+                $thirddue = 0;
+
+
+                if ($read->first != null) {
+                  $first = $read->first;
+                }
+                if ($read->second != null) {
+                  $second = $read->second;
+                }
+                if ($read->third != null) {
+                  $third = $read->third;
+                }
+                if ($read->firstpayed != null) {
+                  $firstpayed = $read->firstpayed;
+                }
+                if ($read->secondpayed != null) {
+                  $secondpayed = $read->secondpayed;
+                }
+                if ($read->thirdpayed != null) {
+                  $thirdpayed = $read->thirdpayed;
+                }
+                if ($read->firstdue != null) {
+                  $firstdue = $read->firstdue;
+                }
+                if ($read->seconddue != null) {
+                  $seconddue = $read->seconddue;
+                }
+                if ($read->thirddue != null) {
+                  $thirddue = $read->thirddue;
+                }
+
+                $totaldue = ($firstdue) + ($seconddue) + ($thirddue);
+              } else {
+                echo 333;
+              }
+
+
+
+              echo "
+              
+            <div id='dv'
+            style='
+              flex-basis: 100%;
+              display: flex;
+              flex-direction:column;
+              justify-content: center;
+              align-items:center;
+              position: relative;
+            
+              
+              
+            '
+          >
+         
+          
+         
+          </div>
+            
+            
+            
+            ";
+            } else {
+              echo  'Error Occured';
+            }
+
+
+
+            ?>

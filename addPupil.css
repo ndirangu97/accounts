@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.parent{
+    max-height: 100vh;
+    max-width: 100vw !important;
+    position: relative;
+}
+.header{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+.btn{
+    margin-left: 30px;
+    width: 200px !important;
+    padding:6px 20px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    color: rgb(57, 57, 255);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-decoration: none;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+.imga{
+    height: 30px;
+      width: 30px;
+      cursor: pointer;
+      margin-left: 30px;
+  }
+.container{
+    height: 94%;
+    display: flex;
+    flex-direction: row;
+}
+.leftContainer{
+
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+.rightContainer{
+    flex: 2;
+}
+.leftContainer img{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    margin: 30px 0 20px 0;
+   
+}
+#label{
+    padding: 10px 10px;
+    background: rgb(190, 190, 190);
+    border-radius: 8px;
+    color: rgb(57, 57, 255);
+    cursor: pointer;
+}
+#form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+.input{
+    width: 500px;
+    margin-bottom: 16px;
+    height: 24px;
+    padding-left: 20px;
+}
+.input:focus{
+    outline: none;
+}
+.input2{
+    width: 220px;
+    height: 20px;
+    padding-left: 10px;
+}
+.input2:focus{
+    outline: none;
+}
+#submit{
+    padding: 10px 32px;
+    background: rgb(190, 190, 190);
+    border-radius: 8px;
+    border: none;
+    color: rgb(57, 57, 255);
+    
+    cursor: pointer;
+    margin-top: 20px;
+}
+#stream:focus{
+    outline: none;
+}
+#class:focus{
+    outline: none;
+}
+#dept{
+    outline: none;
+}
+
+.transfer{
+
+    padding: 10px 30px;
+    background: rgb(13, 187, 13);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.delete{
+    padding: 10px 30px;
+    background: rgb(241, 27, 27);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+#modal{
+    position: absolute;
+    top: 30%;
+    right: 30%;
+    display: none;
+   
+}
+.mparent{
+  /* transform: translate(50%,50%); */
+  background: #8585ff;
+  height: 300px;
+  width: 600px;
+  display: flex;
+    position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+.close{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 10px;
+    cursor: pointer;
+    top: 10px;
+}
