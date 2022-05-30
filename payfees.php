@@ -47,57 +47,64 @@ if (is_array($res)) {
                 }
             }
             if ($err == "") {
+                $query=false;
                 $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer) ";
                 $read = $DB->write($query, []);
                 if ($read) {
+                   
+                    $query=false;
+                    $clerk='Truphena';
+                    $datem=date('d-m');
+                    $time=date('H:i');
+   
+                    $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new')";
+                    $stmt=$DB->write($query,[]);
+                    if ($stmt) {
+                        $info->message = "Fess payed Succefully";
+
+                        $info->type = "pay";
+                        echo json_encode($info);
+                        
+                       
+                    }else {
+                       $info->message = "Statement not created";
+   
+                       $info->type = "err";
+                       echo json_encode($info);
+                    }
+
+                }
+                
+            }
+        } else {
+            $query=false;
+            $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer) ";
+            $read2 = $DB->write($query,[]);
+            if ($read2) {
+                
+                $query=false;
+                $clerk='Truphena';
+                $datem=date('d-m');
+                $time=date('H:i');
+
+                $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new')";
+                $stmt=$DB->write($query,[]);
+                if ($stmt) {
                     $info->message = "Fess payed Succefully";
 
                     $info->type = "pay";
                     echo json_encode($info);
-                }
-                 $query=false;
-                 $clerk='Truphena';
-                 $datem=date('d-m');
-                 $time=date('H:i');
-
-                 $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new')";
-                 $stmt=$DB->write($query,[]);
-                 if ($stmt) {
-                     # code...
-                    
-                 }else {
+                
+                }else {
                     $info->message = "Statement not created";
 
                     $info->type = "err";
                     echo json_encode($info);
-                 }
-            }
-        } else {
-            $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer) ";
-            $read = $DB->write($query, []);
-            if ($read) {
-                $info->message = "Fess payed Succefully";
-
-                $info->type = "pay";
-                echo json_encode($info);
+                }
+                
             }
             
-            $query=false;
-            $clerk='Truphena';
-            $datem=date('d-m');
-            $time=date('H:i');
-
-            $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new')";
-            $stmt=$DB->write($query,[]);
-            if ($stmt) {
-                # code...
-               
-            }else {
-                $info->message = "Statement not created";
-
-                $info->type = "err";
-                echo json_encode($info);
-            }
+            
         }
     }
 } else {

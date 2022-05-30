@@ -16,6 +16,8 @@ $DB = new Database();
   <title>Milimani</title>
   <!-- base:css -->
   <link rel="stylesheet" href="vendors/typicons/typicons.css" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <script src="./js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
@@ -112,8 +114,8 @@ $DB = new Database();
               align-items-center
               w-100
             ">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="./images/milimani.jpg" alt="logo" style="object-fit: cover; width: 50px; height: 50px" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="index.php"><img src="./images/milimani.jpg" alt="logo" style="object-fit: cover; width: 50px; height: 50px" /></a>
+          <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo" /></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
@@ -199,7 +201,7 @@ $DB = new Database();
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="index.php">
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -208,13 +210,13 @@ $DB = new Database();
 
 
           <li class="nav-item">
-            <a class="nav-link" href="./heads.html">
+            <a class="nav-link" href="./heads.php">
               <i class="typcn typcn-th-small-outline menu-icon"></i>
               <span class="menu-title">Heads</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./actions.html">
+            <a class="nav-link" href="./actions.php">
               <i class="typcn typcn-compass menu-icon"></i>
               <span class="menu-title">Actions</span>
             </a>
@@ -223,18 +225,76 @@ $DB = new Database();
       </nav>
       <!-- partial -->
       <div class="bodyWrapper" style="height:100%">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Transfer To</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex justify-content-center align-content-center"> 
+                <div>
+                    <label for="class">Class: </label>
+                    
+                    <select name="class" id="class" style="width: 60px;border: 1px solid #7c7cff ;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                  <div style="margin-left: 20px;">
+                    <label for="stream">Stream: </label>
+                   
+                    <select name="stream" id="stream" style="width: 60px;border: 1px solid #7c7cff ;">
+                        <option value="C">C</option>
+                        <option value="T">T</option>
+                        <option value="B">B</option>
+                        <option value="P">P</option>
+                        <option value="R">R</option>
+                        <option value="L">L</option>
+                        <option value="E">E</option>
+
+                    </select>
+                </div>
+
+                </div>
+                <div id="mer" style="display:flex;align-items:center;justify-content:center"></div>
+              </div>
+              <div class="modal-footer d-flex align-content-center justify-content-center">
+                
+                <button type="button" class="btn btn-primary" onclick="trans()">Transfer</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div id="error" style="height: 20px;width:100%;display:none;justify-content:center;align-items:center;color:red"></div>
         <div style="height: 40px;width:100%;display:flex;justify-content:center;align-items:center;margin-bottom:10px;position:relative">
+        <div  id='feecal' style="display:flex;margin-right:40px;align-items:center">
+            <img src="./images/calendar.png" height="20px" width="20px">
+            <input style="border:1px solid #009879;border-radius:4px;height:30px;width:100px;margin-left:10px" oninput="yearfees(event)" type="number" max="2100" min="2019" value="2022">
+          </div>
 
           <div onclick="fee()" style="padding: 5px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer">
             Fees
           </div>
-          <div  onclick="stmt()" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
+          <div onclick="stmt()" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
             Statement
           </div>
-          <div id="stbtn" style="position: absolute;right:20px;top:4px;display:none">
-            Year : <input oninput="sendData({id:ownid,year:this.value},'stmt')" id="sy" type="number" min='2019' max="2100" value="2022" style="border: 1px solid #009879;border-radius:4px;height:30px;padding-left:10px" />
+          <div id="stbtn" style="margin-left: 20px;display:none">
+          <img src="./images/calendar.png" height="20px" width="20px">
+            <input oninput="sendData({id:ownid,year:this.value},'stmt')" id="sy" type="number" min='2019' max="2100" value="2022" style="border: 1px solid #009879;border-radius:4px;height:30px;padding-left:10px" />
           </div>
+          <div data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
+            Transfer
+          </div>
+
+          
 
         </div>
 
@@ -242,55 +302,55 @@ $DB = new Database();
         <div style="display: flex;height: 580px;position:relative;flex-direction:column;" id="cardHolder">
 
           <div style="display: flex;flex-basis:100%;overflow-y:scroll">
-            <div style="flex-basis:65%;">
+            <div style="flex-basis:65%;" id="tb">
               <?php
-              $id = $_GET['id'];
+                  $id = $_GET['id'];
 
 
 
-              $sql = false;
-              $sql = "SELECT  * FROM fees WHERE userid='$id' ";
-              $res = $DB->read($sql, []);
+                  $sql = false;
+                  $sql = "SELECT  * FROM fees WHERE userid='$id' ";
+                  $res = $DB->read($sql, []);
 
 
 
 
 
-              $term2 = "";
-              $balance = "";
-              $sum = array();
+                  $term2 = "";
+                  $balance = "";
+                  $sum = array();
 
-              if (is_array($res)) {
-                // echo "<pre>";
-                // print_r($res);
+                  if (is_array($res)) {
+                    // echo "<pre>";
+                    // print_r($res);
 
-                foreach ($res as $key) {
+                    foreach ($res as $key) {
 
-                  array_push($sum, $key->balance);
-
-
-                  $term2 .= "
-            <tr>
-                  <th >$key->month</th>
-                  <td>$key->fees</td>
-                  <td>$key->paid</td>
-                  <td style='color: red'>$key->balance</td>
-            </tr>
-            ";
-                }
+                      array_push($sum, $key->balance);
 
 
-                $balance = array_sum($sum);
+                      $term2 .= "
+                <tr>
+                      <th >$key->month</th>
+                      <td>$key->fees</td>
+                      <td>$key->paid</td>
+                      <td style='color: red'>$key->balance</td>
+                </tr>
+                ";
+                    }
 
-                $sql = false;
-                $sql = "SELECT count(balance)
-           FROM fees WHERE userid='$id'";
-                $sum = $DB->read($sql, []);
-                if (is_array($sum)) {
-                  echo "<pre>";
-                  $sum = $sum[0];
-                }
-              }
+
+                    $balance = array_sum($sum);
+
+                    $sql = false;
+                    $sql = "SELECT count(balance)
+              FROM fees WHERE userid='$id'";
+                    $sum = $DB->read($sql, []);
+                    if (is_array($sum)) {
+                     
+                      $sum = $sum[0];
+                    }
+                  }
 
               ?>
               <table width='100%' class='content-table'>
@@ -309,16 +369,26 @@ $DB = new Database();
                     <?php echo $term2 ?>
 
                   </tr>
-
-                  <tr>
+                  <?php
+                  if ($balance>0) {
+                    echo "
+                    
+                    <tr>
                     <th rowspan='4'>BALANCE</th>
                     <!-- <td rowspan='3'>ITEM 2</td> -->
                     <td></td>
                     <td></td>
 
-                    <th style="color: red;"><b><?php
-                                                echo $balance ?></b></th>
+                    <th style='color: red;'><b>
+                                                 $balance </b></th>
                   </tr>
+                    ";
+
+                  }
+                  
+                  ?>
+
+                  
 
 
 
@@ -333,6 +403,7 @@ $DB = new Database();
             <div style="flex-basis: 32%;">
               <div style="display: flex;flex-direction:column;width: 100%;min-height: 90%;border:1px solid #009879;border-radius:8px;margin-left:20px">
                 <div style="display: flex;justify-content:center;flex-basis:10%;margin-top:10px">
+                
                   <div onclick="paybtn()" style="padding: 4px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3">Pay Fees</div>
                   <div onclick="addbtn()" style="padding: 4px 20px;border:1px solid #009879;border-radius:8px;margin-left:20px;cursor:pointer;background:#ff2d2d">Add Fees</div>
 
@@ -407,7 +478,7 @@ $DB = new Database();
         </div>
 
         <div style="display: none;height: 580px;position:relative;flex-direction:column;overflow-y:scroll;width:100%;" id="stmtHolder">
-          <div style="width: 100%;flex-basis:100%;overflow-y:scroll" >
+          <div style="width: 100%;flex-basis:100%;overflow-y:scroll">
             <table width='100%' class='content-table'>
               <thead>
                 <tr>
@@ -429,9 +500,9 @@ $DB = new Database();
               </thead>
               <tbody id="stmtable">
 
-                
+
               </tbody>
-              </table>
+            </table>
 
 
           </div>
@@ -488,6 +559,10 @@ $DB = new Database();
         handleResult(xml.responseText);
         let b = document.getElementById('gif')
         b.style.display = 'none'
+        // let m = document.getElementById('exampleModal')
+        // m.style.display = 'none'
+        
+
       }
     };
 
@@ -497,7 +572,7 @@ $DB = new Database();
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    // alert(results)
+    alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {
@@ -517,6 +592,14 @@ $DB = new Database();
       case 'stmt':
         let stt = document.getElementById('stmtable')
         stt.innerHTML = info.message
+        break;
+        case 'transfer':
+        let me = document.getElementById('mer')
+        me.innerHTML = info.message
+        break;
+        case 'fullfees':
+        let t = document.getElementById('tb')
+        t.innerHTML = info.message
         break;
 
       default:
@@ -616,30 +699,61 @@ $DB = new Database();
   }
 
   function fee() {
+    
     let c = document.getElementById('cardHolder')
     let t = document.getElementById('stmtHolder')
-    let sb=document.getElementById('stbtn')
-    sb.style.display='none'
+    let sb = document.getElementById('stbtn')
+    let fc= document.getElementById('feecal')
+    sb.style.display = 'none'
 
     c.style.display = 'flex'
     t.style.display = 'none'
+    fc.style.display = 'flex'
 
   }
 
   function stmt() {
+    
     let c = document.getElementById('cardHolder')
     let t = document.getElementById('stmtHolder')
     let yi = document.getElementById('sy')
-    let sb=document.getElementById('stbtn')
+    let sb = document.getElementById('stbtn')
+    let fc= document.getElementById('feecal')
 
     c.style.display = 'none'
-    sb.style.display='block'
+    sb.style.display = 'block'
     t.style.display = 'flex'
+    fc.style.display = 'none'
 
     sendData({
       id: ownid,
       year: yi.value
     }, 'stmt');
 
+  }
+  function trans() {
+    let cl=document.getElementById('class')
+    let l=document.getElementById('stream')
+    
+    sendData({
+      class:cl.value,
+      stream:l.value,
+      id:ownid
+    },'trans')
+  }
+
+  function yearfees(e) {
+   
+    let v=e.target.value
+
+    if (v==null) {
+      alert('Year not set')
+    }else{
+      sendData({
+        year:v,
+        id:ownid
+      },'getfullfees')
+    }
+    
   }
 </script>

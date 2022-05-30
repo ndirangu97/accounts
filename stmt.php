@@ -47,10 +47,14 @@ if (is_array($read)) {
     $info->type = "stmt";
     echo json_encode($info);
 }else {
-    $info->message = "No statement found for year $yr";
+    $info->message = "<div style='width:100%;height:100%;display:flex;justify-content:center;align-items:center;'>
+    
+    <p style='color:red'> No statement found for year $yr</p>
+            </div>";
 
  
 
     $info->type = "stmt";
     echo json_encode($info);
 }
+

@@ -18,7 +18,7 @@ $username =""; $password = "";
 $Err="";
 
 if (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "login"){
-    include "./includes/logininclude.php";
+    include "./log.php";
 
 }
 
@@ -27,8 +27,17 @@ elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "pupilName") {
   
 
 }
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "trans") {
+  include "./trans.php";
+  
+
+}
 elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "fees") {
   include "./fees.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getfullfees") {
+  include "./fullfees.php";
   
 }
 elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "payFees") {
