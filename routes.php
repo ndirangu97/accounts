@@ -36,6 +36,18 @@ elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "fees") {
   include "./fees.php";
   
 }
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delfee") {
+  include "./delfee.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delstmt") {
+  include "./delstmt.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delhead") {
+  include "./delhead.php";
+  
+}
 elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getfullfees") {
   include "./fullfees.php";
   

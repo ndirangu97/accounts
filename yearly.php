@@ -16,11 +16,14 @@ if (is_array($results)) {
 
        $class=$row->class;
        $id=$row->userid;
+       $stream=$row->stream;
+       $name=$row->name;
+        $year=date('Y');
 
        $new=$class+1;
 
        $query=false;
-       $query="UPDATE pupils SET class=$new WHERE userid='$id'";
+       $query="INSERT INTO  pupils(class,stream,userid,year,name) VALUES($new,'$stream','$id',$year,'$name')";
        $write=$DB->write($query,[]);
        if ($write) {
         $mess="<p style='color:green'> Pupils transfered  successfully </p>";

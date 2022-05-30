@@ -264,7 +264,7 @@
     xml.send(dataString)
   }
   const handleResult = (results) => {
-    alert(results)
+    // alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {

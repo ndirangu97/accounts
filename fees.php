@@ -17,5 +17,9 @@ if (is_array($read)) {
     echo json_encode($info);
 
 }else{
-    echo 'no';
+    
+    $info->message ="ERROR:Pupil not found";
+  
+    $info->type = "error";
+    echo json_encode($info);
 }

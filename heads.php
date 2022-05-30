@@ -441,6 +441,9 @@
         ch.style.color='green'
         ch.innerHTML = info.message;
         break;
+        case "upfees":
+        getHead()
+        break;
       case "err":
         let h = document.getElementById("set");
         h.style.color='red'
@@ -531,4 +534,14 @@
   //   m.style.display='none'
     
   // }
+  function headmod(e) {
+   
+    let m=e.target.id
+    let c=e.target.className
+    sendData({
+      month:m,
+      id:c
+    },'delhead')
+    
+  }
 </script>

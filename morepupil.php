@@ -67,11 +67,14 @@ $DB = new Database();
   .content-table th,
   .content-table td {
     padding: 10px 15px;
+    text-align: center;
   }
 
   .content-table tbody tr {
     border-bottom: 1px solid #dddddd;
+    cursor: pointer;
   }
+
 
   .content-table tbody tr:nth-last-of-type(even) {
     background: #b1afaf;
@@ -233,41 +236,41 @@ $DB = new Database();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <div class="d-flex justify-content-center align-content-center"> 
-                <div>
+                <div class="d-flex justify-content-center align-content-center">
+                  <div>
                     <label for="class">Class: </label>
-                    
+
                     <select name="class" id="class" style="width: 60px;border: 1px solid #7c7cff ;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
                     </select>
-                </div>
+                  </div>
                   <div style="margin-left: 20px;">
                     <label for="stream">Stream: </label>
-                   
+
                     <select name="stream" id="stream" style="width: 60px;border: 1px solid #7c7cff ;">
-                        <option value="C">C</option>
-                        <option value="T">T</option>
-                        <option value="B">B</option>
-                        <option value="P">P</option>
-                        <option value="R">R</option>
-                        <option value="L">L</option>
-                        <option value="E">E</option>
+                      <option value="C">C</option>
+                      <option value="T">T</option>
+                      <option value="B">B</option>
+                      <option value="P">P</option>
+                      <option value="R">R</option>
+                      <option value="L">L</option>
+                      <option value="E">E</option>
 
                     </select>
-                </div>
+                  </div>
 
                 </div>
                 <div id="mer" style="display:flex;align-items:center;justify-content:center"></div>
               </div>
               <div class="modal-footer d-flex align-content-center justify-content-center">
-                
+
                 <button type="button" class="btn btn-primary" onclick="trans()">Transfer</button>
               </div>
             </div>
@@ -275,7 +278,7 @@ $DB = new Database();
         </div>
         <div id="error" style="height: 20px;width:100%;display:none;justify-content:center;align-items:center;color:red"></div>
         <div style="height: 40px;width:100%;display:flex;justify-content:center;align-items:center;margin-bottom:10px;position:relative">
-        <div  id='feecal' style="display:flex;margin-right:40px;align-items:center">
+          <div id='feecal' style="display:flex;margin-right:40px;align-items:center">
             <img src="./images/calendar.png" height="20px" width="20px">
             <input style="border:1px solid #009879;border-radius:4px;height:30px;width:100px;margin-left:10px" oninput="yearfees(event)" type="number" max="2100" min="2019" value="2022">
           </div>
@@ -287,14 +290,14 @@ $DB = new Database();
             Statement
           </div>
           <div id="stbtn" style="margin-left: 20px;display:none">
-          <img src="./images/calendar.png" height="20px" width="20px">
+            <img src="./images/calendar.png" height="20px" width="20px">
             <input oninput="sendData({id:ownid,year:this.value},'stmt')" id="sy" type="number" min='2019' max="2100" value="2022" style="border: 1px solid #009879;border-radius:4px;height:30px;padding-left:10px" />
           </div>
           <div data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
             Transfer
           </div>
 
-          
+
 
         </div>
 
@@ -302,55 +305,57 @@ $DB = new Database();
         <div style="display: flex;height: 580px;position:relative;flex-direction:column;" id="cardHolder">
 
           <div style="display: flex;flex-basis:100%;overflow-y:scroll">
-            <div style="flex-basis:65%;" id="tb">
+            <div style="flex-basis:65%;height:570px;overflow-y:scroll" id="tb">
               <?php
-                  $id = $_GET['id'];
+              $id = $_GET['id'];
 
 
 
-                  $sql = false;
-                  $sql = "SELECT  * FROM fees WHERE userid='$id' ";
-                  $res = $DB->read($sql, []);
+              $sql = false;
+              $sql = "SELECT  * FROM fees WHERE userid='$id' ";
+              $res = $DB->read($sql, []);
 
 
 
 
 
-                  $term2 = "";
-                  $balance = "";
-                  $sum = array();
+              $term2 = "";
+              $balance = "";
+              $sum = array();
 
-                  if (is_array($res)) {
-                    // echo "<pre>";
-                    // print_r($res);
+              if (is_array($res)) {
+                // echo "<pre>";
+                // print_r($res);
 
-                    foreach ($res as $key) {
+                foreach ($res as $key) {
 
-                      array_push($sum, $key->balance);
+                  array_push($sum, $key->balance);
 
 
-                      $term2 .= "
-                <tr>
+                  $term2 .= "
+                <tr >
                       <th >$key->month</th>
                       <td>$key->fees</td>
                       <td>$key->paid</td>
+                      
                       <td style='color: red'>$key->balance</td>
+                      <td style='padding:10px 3px ;'><img onclick='feemod(event)' id='$key->id' src='./images/delete.png' width='15px' height='15px' /></td>
                 </tr>
                 ";
-                    }
+                }
 
 
-                    $balance = array_sum($sum);
+                $balance = array_sum($sum);
 
-                    $sql = false;
-                    $sql = "SELECT count(balance)
+                $sql = false;
+                $sql = "SELECT count(balance)
               FROM fees WHERE userid='$id'";
-                    $sum = $DB->read($sql, []);
-                    if (is_array($sum)) {
-                     
-                      $sum = $sum[0];
-                    }
-                  }
+                $sum = $DB->read($sql, []);
+                if (is_array($sum)) {
+
+                  $sum = $sum[0];
+                }
+              }
 
               ?>
               <table width='100%' class='content-table'>
@@ -360,6 +365,7 @@ $DB = new Database();
                     <th>FEES</th>
                     <th>PAID</th>
                     <th>BALANCE</th>
+                    <th style="padding:10px 3px ;">ACTIONS</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -370,7 +376,7 @@ $DB = new Database();
 
                   </tr>
                   <?php
-                  if ($balance>0) {
+                  if ($balance > 0) {
                     echo "
                     
                     <tr>
@@ -379,16 +385,29 @@ $DB = new Database();
                     <td></td>
                     <td></td>
 
-                    <th style='color: red;'><b>
-                                                 $balance </b></th>
+                    <th style='color: red;'><b>$balance </b></th>
+                    <td style='padding:10px 3px ;'></td>
+                  </tr>
+                    ";
+                  }else{
+                    echo "
+                    
+                    <tr>
+                    <th rowspan='4'>BALANCE</th>
+                    <!-- <td rowspan='3'>ITEM 2</td> -->
+                    <td></td>
+                    <td></td>
+
+                    <th style='color: red;'><b>0 </b></th>
+                    <td style='padding:10px 3px ;'></td>
                   </tr>
                     ";
 
                   }
-                  
+
                   ?>
 
-                  
+
 
 
 
@@ -403,7 +422,7 @@ $DB = new Database();
             <div style="flex-basis: 32%;">
               <div style="display: flex;flex-direction:column;width: 100%;min-height: 90%;border:1px solid #009879;border-radius:8px;margin-left:20px">
                 <div style="display: flex;justify-content:center;flex-basis:10%;margin-top:10px">
-                
+
                   <div onclick="paybtn()" style="padding: 4px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3">Pay Fees</div>
                   <div onclick="addbtn()" style="padding: 4px 20px;border:1px solid #009879;border-radius:8px;margin-left:20px;cursor:pointer;background:#ff2d2d">Add Fees</div>
 
@@ -475,6 +494,7 @@ $DB = new Database();
 
           </div>
           <div style="position: absolute;right:50px;top:20px"> <img id="gif" src="./images/loader.gif" style="height: 50px;width: 50px;margin-left: 10px;display: none;"></div>
+
         </div>
 
         <div style="display: none;height: 580px;position:relative;flex-direction:column;overflow-y:scroll;width:100%;" id="stmtHolder">
@@ -494,6 +514,7 @@ $DB = new Database();
                   <th>CLERK</th>
                   <th>TYPE</th>
                   <th>YEAR</th>
+                  <th style='padding:10px 3px ;'>ACTIONS</th>
 
 
                 </tr>
@@ -561,7 +582,7 @@ $DB = new Database();
         b.style.display = 'none'
         // let m = document.getElementById('exampleModal')
         // m.style.display = 'none'
-        
+
 
       }
     };
@@ -572,7 +593,7 @@ $DB = new Database();
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    alert(results)
+    // alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {
@@ -581,6 +602,20 @@ $DB = new Database();
         alert(info.message)
 
         location.reload();
+
+
+        break;
+      case 'delfees':
+        alert(info.message)
+
+        location.reload();
+
+
+        break;
+        case 'delstmt':
+        alert(info.message)
+
+        stmt()
 
 
         break;
@@ -593,11 +628,11 @@ $DB = new Database();
         let stt = document.getElementById('stmtable')
         stt.innerHTML = info.message
         break;
-        case 'transfer':
+      case 'transfer':
         let me = document.getElementById('mer')
         me.innerHTML = info.message
         break;
-        case 'fullfees':
+      case 'fullfees':
         let t = document.getElementById('tb')
         t.innerHTML = info.message
         break;
@@ -699,11 +734,11 @@ $DB = new Database();
   }
 
   function fee() {
-    
+
     let c = document.getElementById('cardHolder')
     let t = document.getElementById('stmtHolder')
     let sb = document.getElementById('stbtn')
-    let fc= document.getElementById('feecal')
+    let fc = document.getElementById('feecal')
     sb.style.display = 'none'
 
     c.style.display = 'flex'
@@ -713,12 +748,12 @@ $DB = new Database();
   }
 
   function stmt() {
-    
+
     let c = document.getElementById('cardHolder')
     let t = document.getElementById('stmtHolder')
     let yi = document.getElementById('sy')
     let sb = document.getElementById('stbtn')
-    let fc= document.getElementById('feecal')
+    let fc = document.getElementById('feecal')
 
     c.style.display = 'none'
     sb.style.display = 'block'
@@ -731,29 +766,48 @@ $DB = new Database();
     }, 'stmt');
 
   }
+
   function trans() {
-    let cl=document.getElementById('class')
-    let l=document.getElementById('stream')
-    
+    let cl = document.getElementById('class')
+    let l = document.getElementById('stream')
+
     sendData({
-      class:cl.value,
-      stream:l.value,
-      id:ownid
-    },'trans')
+      class: cl.value,
+      stream: l.value,
+      id: ownid
+    }, 'trans')
   }
 
   function yearfees(e) {
-   
-    let v=e.target.value
 
-    if (v==null) {
+    let v = e.target.value
+
+    if (v == null) {
       alert('Year not set')
-    }else{
+    } else {
       sendData({
-        year:v,
-        id:ownid
-      },'getfullfees')
+        year: v,
+        id: ownid
+      }, 'getfullfees')
     }
-    
+
+  }
+
+  function feemod(e) {
+
+    let i = e.target.id
+    sendData({
+        id: i
+      },
+      'delfee')
+  }
+
+  function stmtmod(e) {
+
+    let i = e.target.id
+    sendData({
+        id: i
+      },
+      'delstmt')
   }
 </script>

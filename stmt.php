@@ -32,6 +32,7 @@ if (is_array($read)) {
                      <td>$keys->clerk</td>
                      <td>$keys->type</td>
                      <td>$keys->year</td>
+                     <td style='padding:10px 3px ;'><img onclick='stmtmod(event)' id='$keys->id' src='./images/delete.png' width='15px' height='15px' /></td>
    
                    </tr>
                    

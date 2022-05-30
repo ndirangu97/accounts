@@ -17,9 +17,10 @@ if (is_array($read)) {
         $class=$row->class;
         $stream=$row->stream;
         $yr=date('Y');
+        $name=$row->name;
 
 
-        $query="INSERT INTO pupils(userid,class,stream,year)VALUES('$id',$class,'$stream',$yr) ";
+        $query="INSERT INTO pupils(userid,class,stream,year,name)VALUES('$id',$class,'$stream',$yr,'$name') ";
         $save=$DB->write($query,[]);
         if ($save) {
             $mess="<p style='color:green'>  $no Pupils imported successfully </p>";

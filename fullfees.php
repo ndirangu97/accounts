@@ -30,11 +30,12 @@ if (is_array($res)) {
 
 
         $term2 .= "
-            <tr>
-                  <th >$key->month</th>
-                  <td >$key->fees</td>
-                  <td >$key->paid</td>
+            <tr id='$key->userid'>
+                  <th id='$key->userid' >$key->month</th>
+                  <td id='$key->userid'>$key->fees</td>
+                  <td id='$key->userid'>$key->paid</td>
                   <td style='color: red;'>$key->balance</td>
+                  <td style='padding:10px 3px ;'><img onclick='stmtmod(event)' id='$key->id' src='./images/delete.png' width='15px' height='15px' /></td>
             </tr>
             ";
     }
@@ -47,11 +48,12 @@ if (is_array($res)) {
 $mess.="
 <table width='100%' class='content-table'>
     <thead>
-        <tr>b
+        <tr>
             <th>MONTH</th>
             <th>FEES</th>
             <th>PAID</th>
             <th>BALANCE</th>
+            <th style='padding:10px 3px ;'>ACTIONS</th>
         </tr>
     </thead>
     <tbody>

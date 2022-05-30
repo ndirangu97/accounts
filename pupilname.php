@@ -7,8 +7,9 @@
 
     $name=$DATA_OBJECT->name;
     $r=8;
+    $year=date('Y');
 
-    $sql="SELECT * FROM students WHERE name LIKE '%$name%' and class <= $r ";
+    $sql="SELECT * FROM pupils WHERE name LIKE '%$name%' and class <= $r and year=$year";
     $results=$DB->read($sql,[]);
     if (is_array($results)) {
      
