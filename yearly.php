@@ -40,10 +40,12 @@ if (is_array($results)) {
                 array_push($bal, $keyp->balance);
             }
             $balance = array_sum($bal);
+
+            $fy=date('Y');
             
 
             $query=false;
-            $query="INSERT into fees(lastyear,year) VALUES($balance,$y1) ";
+            $query="INSERT into fees(lastyear,year,userid) VALUES($balance,$fy,'$id') ";
             $wr=$DB->write($query,[]);
 
             if ($wr) {

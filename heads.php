@@ -320,7 +320,7 @@
               <div style="margin-left: 60px">
                 <div><label for="class">Year: </label></div>
                 <span id="cErr"></span>
-                <input style="border: 1px solid #7c7cff;border-radius: 4px;height: 40px;width: 80px;" value="2022"   type="text" name="" id="y">
+                <input style="border: 1px solid #7c7cff;border-radius: 4px;height: 40px;width: 80px;" value="2022"  min="2019" max="2100"  type="number" name="" id="y">
               </div>
               <div style="margin-left: 40px">
                 <div>Fees:  <span id="er" style="color: red;"></span></div>

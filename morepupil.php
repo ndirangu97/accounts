@@ -465,7 +465,7 @@ $DB = new Database();
                     <div><label for="class">Year: </label></div>
                     <span id="cErr"></span>
                     <div style="margin-left: 30px;">
-                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px" value="2022" type="text" name="" id="y">
+                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px" min="2019" value="2022" type="number" max="2100" name="" id="y">
                     </div>
                   </div>
                   <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:20px">

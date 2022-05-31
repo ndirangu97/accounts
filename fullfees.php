@@ -8,7 +8,7 @@
 $id=$DATA_OBJECT->id;
 $y=$DATA_OBJECT->year;
 $sql = false;
-$sql = "SELECT  * FROM fees WHERE userid='$id' and year=$y ";
+$sql = "SELECT  * FROM fees WHERE userid='$id' and year=$y";
 $res = $DB->read($sql, []);
 
 
@@ -24,12 +24,29 @@ if (is_array($res)) {
     // echo "<pre>";
     // print_r($res);
 
+
+
     foreach ($res as $key) {
 
         array_push($sum, $key->balance);
 
+        if ($key->lastyear!=0) {
+            array_push($sum, $key->lastyear);
+            $term2 .= "
+            <tr id='$key->userid'>
+                  <th id='$key->userid' >LastYear</th>
+                  <td id='$key->userid'></td>
+                  <td id='$key->userid'></td>
+                  <td style='color: red;'>$key->lastyear</td>
+                  <td style='padding:10px 3px ;'><img onclick='stmtmod(event)' id='$key->id' src='./images/delete.png' width='15px' height='15px' /></td>
+            </tr>
+            ";
+            
+        }
 
-        $term2 .= "
+
+        if ($key->lastyear==0) {
+             $term2 .= "
             <tr id='$key->userid'>
                   <th id='$key->userid' >$key->month</th>
                   <td id='$key->userid'>$key->fees</td>
@@ -38,6 +55,8 @@ if (is_array($res)) {
                   <td style='padding:10px 3px ;'><img onclick='stmtmod(event)' id='$key->id' src='./images/delete.png' width='15px' height='15px' /></td>
             </tr>
             ";
+        }
+       
     }
 
 
