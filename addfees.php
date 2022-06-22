@@ -8,7 +8,16 @@ $tn=$DATA_OBJECT->term;
 $mth = $DATA_OBJECT->month;
 $fees = $DATA_OBJECT->fees;
 $yer = $DATA_OBJECT->year;
-
+if (empty($DATA_OBJECT->no)) {
+    $no="";
+}else{
+    $no=$DATA_OBJECT->no;
+}
+if (empty($DATA_OBJECT->dt)) {
+    $dt="";
+}else{
+    $dt=$DATA_OBJECT->dt;
+}
 
 $sql = "SELECT * FROM fees WHERE userid='$id' and year=$yer and month='$mth'";
 $res = $DB->read($sql, []);
@@ -37,7 +46,7 @@ if (is_array($res)) {
         $datem=date('d-m');
         $time=date('H:i');
 
-        $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$tp,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'add')";
+        $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type,recieptno,recieptdate) VALUES('$id','$mth',$tp,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'add','$no','$dt')";
         $stmt=$DB->write($query,[]);
         if ($stmt) {
             # code...

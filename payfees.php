@@ -9,6 +9,21 @@ $fees = $DATA_OBJECT->fees;
 $yer = $DATA_OBJECT->year;
 $tn = $DATA_OBJECT->term;
 $err = "";
+if (empty($DATA_OBJECT->no)) {
+    $no="";
+}else{
+    $no=$DATA_OBJECT->no;
+}
+if (empty($DATA_OBJECT->dt)) {
+    $dt="";
+}else{
+    $dt=$DATA_OBJECT->dt;
+}
+if (empty($DATA_OBJECT->bal)) {
+    $lyb=0;
+}else{
+    $lyb=$DATA_OBJECT->bal;
+}
 
 $sql = false;
 
@@ -48,7 +63,7 @@ if (is_array($res)) {
             }
             if ($err == "") {
                 $query=false;
-                $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer) ";
+                $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year,recieptno,recieptdate,lastyear) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer,'$no','$dt',$lyb) ";
                 $read = $DB->write($query, []);
                 if ($read) {
                    
@@ -57,7 +72,7 @@ if (is_array($res)) {
                     $datem=date('d-m');
                     $time=date('H:i');
    
-                    $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new')";
+                    $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type,recieptno,recieptdate) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new','$no','$dt')";
                     $stmt=$DB->write($query,[]);
                     if ($stmt) {
                         $info->message = "Fess payed Succefully";
@@ -78,7 +93,7 @@ if (is_array($res)) {
             }
         } else {
             $query=false;
-            $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer) ";
+            $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year,recieptno,recieptdate,lastyear) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer,'$no','$dt',$lyb) ";
             $read2 = $DB->write($query,[]);
             if ($read2) {
                 
@@ -87,7 +102,7 @@ if (is_array($res)) {
                 $datem=date('d-m');
                 $time=date('H:i');
 
-                $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new')";
+                $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type,recieptno,recieptdate) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new','$no','$dt')";
                 $stmt=$DB->write($query,[]);
                 if ($stmt) {
                     $info->message = "Fess payed Succefully";

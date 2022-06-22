@@ -8,10 +8,22 @@ $err="";
 
 
 if (is_array($read)) {
-    $no=count($read);
+    $no=0;
+
+   
     
     foreach ($read as $row) {
-        # code...
+
+        $sql=false;
+        $getid=$row->userid;
+        $sql="SELECT * FROM pupils WHERE userid='$getid' LIMIT 1";
+        $getres=$DB->read($sql,[]);
+
+        if (is_array($getres)) {
+           
+        }else {
+            $no++;
+            
         $query=false;
         $id=$row->userid;
         $class=$row->class;
@@ -28,6 +40,11 @@ if (is_array($read)) {
         }else {
             $err="<p style='color:red'> ERROR :pupils not imported </p>";
         }
+            
+        }
+
+
+       
     }
 }
 if ($mess!="") {
@@ -49,4 +66,10 @@ if ($err!="") {
 $info->type = "err";
 echo json_encode($info);
 
+}
+
+if ($no==0) {
+    $info->message="<p style='color:red'> All pupils already imported </p>";
+    $info->type = "err";
+    echo json_encode($info);
 }

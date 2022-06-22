@@ -148,6 +148,16 @@ $DB = new Database();
             </div>
           </li>
         </ul>
+        <ul class="navbar-nav mr-lg-2" style="margin-left:100px ;">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
+       
+              <span class="nav-profile-name">Hezron Ndirangu 5T</span>
+            </a>
+            
+          </li>
+        </ul>
+        
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-date dropdown">
             <a class="
@@ -346,6 +356,7 @@ $DB = new Database();
 
 
                 $balance = array_sum($sum);
+              
 
                 $sql = false;
                 $sql = "SELECT count(balance)
@@ -376,12 +387,12 @@ $DB = new Database();
 
                   </tr>
                   <?php
-                  if ($balance > 0) {
+                  if ($balance != 0) {
                     echo "
                     
                     <tr>
                     <th rowspan='4'>BALANCE</th>
-                    <!-- <td rowspan='3'>ITEM 2</td> -->
+              
                     <td></td>
                     <td></td>
 
@@ -419,15 +430,15 @@ $DB = new Database();
               </table>
 
             </div>
-            <div style="flex-basis: 32%;">
-              <div style="display: flex;flex-direction:column;width: 100%;min-height: 90%;border:1px solid #009879;border-radius:8px;margin-left:20px">
-                <div style="display: flex;justify-content:center;flex-basis:10%;margin-top:10px">
+            <div style="flex-basis: 32%">
+              <div style="display: flex;flex-direction:column;width: 100%;height:500px;border:1px solid #009879;border-radius:8px;margin-left:20px">
+                <div style="display: flex;justify-content:center;flex-basis:10%;margin-top:10px;align-items:center">
 
-                  <div onclick="paybtn()" style="padding: 4px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3">Pay Fees</div>
-                  <div onclick="addbtn()" style="padding: 4px 20px;border:1px solid #009879;border-radius:8px;margin-left:20px;cursor:pointer;background:#ff2d2d">Add Fees</div>
+                  <div onclick="paybtn()" style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3">Pay Fees</div>
+                  <div onclick="addbtn()" style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;margin-left:20px;cursor:pointer;background:#ff2d2d">Add Fees</div>
 
                 </div>
-                <div style="display: flex;flex-basis:90%;flex-direction:column;align-items:center;margin-top:20px;">
+                <div style="display: flex;flex-basis:90%;flex-direction:column;align-items:center;margin-top:10px;">
                   <div style="display: flex;width:100%;justify-content:center;align-items:center;margin-top:20px">
                     <div><label for="class">Term: </label></div>
                     <div style="margin-left: 16px;">
@@ -468,6 +479,27 @@ $DB = new Database();
                       <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px" min="2019" value="2022" type="number" max="2100" name="" id="y">
                     </div>
                   </div>
+                  <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px">
+                    <div><label for="class">Rcpt/no </label></div>
+                    <span id="cErr"></span> 
+                    <div style="margin-left: 30px;">
+                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px;margin-left:-15px"  type="text"  name="" id="rcptno">
+                    </div>
+                  </div>
+                  <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px">
+                    <div><label for="class">Rcpt/dt </label></div>
+                    <span id="cErr"></span>
+                    <div style="margin-left: 30px;">
+                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px;margin-left:-10px"  type="date" name="" id="rcptdt">
+                    </div>
+                  </div>
+                  <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px">
+                    <div><label for="class">Balance </label></div>
+                    <span id="cErr"></span>
+                    <div style="margin-left: 25px;">
+                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px;margin-left:-10px"  type="number" name="" id="bal">
+                    </div>
+                  </div>
                   <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:20px">
 
                     <div>Fees:</div>
@@ -478,8 +510,8 @@ $DB = new Database();
                     </div>
 
                   </div>
-                  <button id="paybtn" style="margin-top: 40px;padding:8px 60px;border:1px solid #009879;border-radius:8px;background:#7ed2f3" onclick="payFees()">Pay </button>
-                  <button id="addbtn" style="margin-top: 40px;padding:8px 60px;border:1px solid #009879;border-radius:8px;background:#ff2d2d;display:none" onclick="addFees()">Add Fees </button>
+                  <button id="paybtn" style="margin-top: 30px;padding:4px 60px;border:1px solid #009879;border-radius:8px;background:#7ed2f3" onclick="payFees()">Pay </button>
+                  <button id="addbtn" style="margin-top: 30px;padding:4px 60px;border:1px solid #009879;border-radius:8px;background:#ff2d2d;display:none" onclick="addFees()">Add Fees </button>
 
                 </div>
 
@@ -497,8 +529,8 @@ $DB = new Database();
 
         </div>
 
-        <div style="display: none;height: 580px;position:relative;flex-direction:column;overflow-y:scroll;width:100%;" id="stmtHolder">
-          <div style="width: 100%;flex-basis:100%;overflow-y:scroll">
+        <div style="display: none;height: 540px;position:relative;flex-direction:column;overflow:auto;width:100%;" id="stmtHolder">
+          <div style="width: 100%;height:540px;overflow-y:scroll">
             <table width='100%' class='content-table'>
               <thead>
                 <tr>
@@ -649,8 +681,12 @@ $DB = new Database();
     let f = document.getElementById('cl3');
     let m = document.getElementById('clm');
     let tm = document.getElementById('tm');
+    let rno = document.getElementById('rcptno').value;
+    let  rd= document.getElementById('rcptdt').value;
+    let bal=document.getElementById('bal').value;
 
     let yv = y.value
+  
     let mv = m.value
     let clv3 = f.value
     let tmy = tm.value
@@ -669,7 +705,10 @@ $DB = new Database();
           year: yv,
           month: mv,
           fees: clv3,
-          id: ownid
+          id: ownid,
+          no:rno,
+          dt:rd,
+          bal:bal
         }, 'payFees')
 
       }
@@ -706,6 +745,8 @@ $DB = new Database();
     let f = document.getElementById('cl3');
     let m = document.getElementById('clm');
     let tm = document.getElementById('tm');
+    let rno = document.getElementById('rcptno').value;
+    let  rd= document.getElementById('rcptdt').value;
 
     let yv = y.value
     let mv = m.value
@@ -726,7 +767,9 @@ $DB = new Database();
           year: yv,
           month: mv,
           fees: clv3,
-          id: ownid
+          id: ownid,
+          no:rno,
+          dt:rd
         }, 'addFees')
 
       }

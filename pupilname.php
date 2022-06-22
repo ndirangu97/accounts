@@ -9,12 +9,12 @@
     $r=8;
     $year=date('Y');
 
-    $sql="SELECT * FROM pupils WHERE name LIKE '%$name%' and class <= $r and year=$year";
+    $sql="SELECT * FROM pupils WHERE name LIKE '%$name%'  and year=$year";
     $results=$DB->read($sql,[]);
     if (is_array($results)) {
      
         foreach ($results as $row) {
-          if ($row->graduated==0) {
+          if ($row->class <= 8) {
             $mess.="
             <a href='./morepupil.php?id=$row->userid' style='text-decoration:none;color:inherit'>
             <div class='card' style='
@@ -68,7 +68,7 @@
                 margin-top:10px
               '>
             <p ><h6 style='font-size: 18px;'>$row->name</h6></p>
-            <div style='display:flex;justify-content:center;align-items:center'> <p style='margin-top:5px'> <h6>Graduated</h6 > <h5 style='font-size: 16px;color: #009879;margin-left:10px' >$row->yearleft</h5></p></div>
+            <div style='display:flex;justify-content:center;align-items:center'> <p style='margin-top:5px'> <h6 style='color:red'>Graduated</h6 > <h5 style='font-size: 16px;color: #009879;margin-left:10px' >$row->yearleft</h5></p></div>
            
           </div>
         </div>

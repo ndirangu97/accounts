@@ -171,7 +171,7 @@
             align-items: center;
             padding:10px 10px;
             cursor: pointer;
-          ' onclick="sendData({},'import')">
+          ' onclick="getport()">
 
               <h6>Import Pupils</h6>
              
@@ -187,7 +187,7 @@
             align-items: center;
             padding:10px 10px;
             cursor: pointer;
-          '  onclick="sendData({},'yearly')">
+          '  onclick="trans()">
 
               <h6>Yearly Transter Pupils</h6>
               <img src="./images/difficulties.png" height="60px" width="60px">
@@ -264,7 +264,7 @@
     xml.send(dataString)
   }
   const handleResult = (results) => {
-    // alert(results)
+    alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {
@@ -293,6 +293,20 @@
         break;
     }
 
+  }
+  function trans() {
+    let c=confirm('Are you sure you want to yearly transferr to next class?')
+
+    if (c) {
+      sendData({},'yearly')
+    }
+  }
+  function getport() {
+    let c=confirm('Are you sure you want to import students?')
+
+    if (c) {
+      sendData({},'import')
+    }
   }
   
 </script>
