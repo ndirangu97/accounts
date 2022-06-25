@@ -3,6 +3,22 @@
 require_once "./connection.php";
 
 $DB = new Database();
+$userid=$_GET['id'];
+$year2=date('Y');
+
+    $sql = false;
+      $sql = "SELECT  * FROM pupils WHERE userid='$userid' and year=$year2  LIMIT 1";
+      $rese = $DB->read($sql, []);
+
+
+      if (is_array($rese)) {
+     
+        $rese=$rese[0];
+        $name=$rese->name;
+        $class=$rese->class;
+      }
+   
+      
 
 ?>
 
@@ -108,134 +124,11 @@ $DB = new Database();
 <body>
   <div class="container-scroller" style="height: 100vh">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="height: 78px">
-      <div class="navbar-brand-wrapper d-flex justify-content-center">
-        <div class="
-              navbar-brand-inner-wrapper
-              d-flex
-              justify-content-between
-              align-items-center
-              w-100
-            ">
-          <a class="navbar-brand brand-logo" href="index.php"><img src="./images/milimani.jpg" alt="logo" style="object-fit: cover; width: 50px; height: 50px" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo" /></a>
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="typcn typcn-th-menu"></span>
-          </button>
-        </div>
-      </div>
-      <div class="
-            navbar-menu-wrapper
-            d-flex
-            align-items-center
-            justify-content-end
-          ">
-        <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/faces/face5.jpg" alt="profile" />
-              <span class="nav-profile-name">Truphena</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="typcn typcn-cog-outline text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item">
-                <i class="typcn typcn-eject text-primary"></i>
-                Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav mr-lg-2" style="margin-left:100px ;">
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
-       
-              <span class="nav-profile-name">Hezron Ndirangu 5T</span>
-            </a>
-            
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-date dropdown">
-            <a class="
-                  nav-link
-                  d-flex
-                  justify-content-center
-                  align-items-center
-                " href="javascript:;">
-              <h6 class="date mb-0">Today : Mar 23</h6>
-              <i class="typcn typcn-calendar"></i>
-            </a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="
-                  nav-link
-                  count-indicator
-                  dropdown-toggle
-                  d-flex
-                  justify-content-center
-                  align-items-center
-                " id="messageDropdown" href="#" data-toggle="dropdown">
-              <i class="typcn typcn-cog-outline mx-0"></i>
-              <span class="count"></span>
-            </a>
-            <div class="
-                  dropdown-menu dropdown-menu-right
-                  navbar-dropdown
-                  preview-list
-                " aria-labelledby="messageDropdown">
-              <a class="dropdown-item preview-item">
-                <div class="preview-item-content flex-grow">
-                  <img src="./images/logout.png" alt="image" style="width: 25px; height: 25px" />
-                  <h6 class="preview-subject ellipsis font-weight-normal">
-                    Logout
-                  </h6>
-                </div>
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button class="
-              navbar-toggler navbar-toggler-right
-              d-lg-none
-              align-self-center
-            " type="button" data-toggle="offcanvas">
-          <span class="typcn typcn-th-menu"></span>
-        </button>
-      </div>
-    </nav>
+    <?php include './header.view.php'; ?>
     <!-- partial -->
 
     <div class="container-fluid page-body-wrapper">
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">
-              <i class="typcn typcn-device-desktop menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-
-
-
-          <li class="nav-item">
-            <a class="nav-link" href="./heads.php">
-              <i class="typcn typcn-th-small-outline menu-icon"></i>
-              <span class="menu-title">Heads</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./actions.php">
-              <i class="typcn typcn-compass menu-icon"></i>
-              <span class="menu-title">Actions</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <?php include './nav.view.php'; ?>
       <!-- partial -->
       <div class="bodyWrapper" style="height:100%">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -318,15 +211,11 @@ $DB = new Database();
             <div style="flex-basis:65%;height:570px;overflow-y:scroll" id="tb">
               <?php
               $id = $_GET['id'];
-
-
+              $year=date('Y');
 
               $sql = false;
-              $sql = "SELECT  * FROM fees WHERE userid='$id' ";
+              $sql = "SELECT  * FROM pupils WHERE userid='$id' and year=$year";
               $res = $DB->read($sql, []);
-
-
-
 
 
               $term2 = "";
@@ -336,23 +225,177 @@ $DB = new Database();
               if (is_array($res)) {
                 // echo "<pre>";
                 // print_r($res);
+                $res=$res[0];
 
-                foreach ($res as $key) {
+                $mbalance=($res->januarybalance)+($res->februarybalance)+($res->marchbalance)+($res->aprilbalance)+($res->maybalance)+($res->junebalance)+($res->julybalance)+($res->augustbalance)+($res->septemberbalance)+($res->octoberbalance)+($res->novemberbalance)+($res->decemberbalance)+($res->lastyearbalance);
 
-                  array_push($sum, $key->balance);
+                  
 
-
+                  
+                if ($res->lastyearbalance!=0) {
                   $term2 .= "
-                <tr >
-                      <th >$key->month</th>
-                      <td>$key->fees</td>
-                      <td>$key->paid</td>
-                      
-                      <td style='color: red'>$key->balance</td>
-                      <td style='padding:10px 3px ;'><img onclick='feemod(event)' id='$key->id' src='./images/delete.png' width='15px' height='15px' /></td>
-                </tr>
-                ";
+                  <tr >
+                        <th >Amount Due</th>
+                        <td>''</td>
+                        <td>''</td>
+                        
+                        <td style='color: red'>$res->lastyearbalance</td>
+                        
+                  </tr>
+                  ";
                 }
+
+                  if ($res->januaryfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >January</th>
+                          <td>$res->januaryfees</td>
+                          <td>$res->januarypaid</td>
+                          
+                          <td style='color: red'>$res->januarybalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  
+                  if ($res->februaryfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >February</th>
+                          <td>$res->februaryfees</td>
+                          <td>$res->februarypaid</td>
+                          
+                          <td style='color: red'>$res->februarybalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->marchfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >March</th>
+                          <td>$res->marchfees</td>
+                          <td>$res->marchpaid</td>
+                          
+                          <td style='color: red'>$res->marchbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->aprilfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >April</th>
+                          <td>$res->aprilfees</td>
+                          <td>$res->aprilpaid</td>
+                          
+                          <td style='color: red'>$res->aprilbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->mayfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >May</th>
+                          <td>$res->mayfees</td>
+                          <td>$res->maypaid</td>
+                          
+                          <td style='color: red'>$res->maybalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+  
+                  if ($res->junefees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >June</th>
+                          <td>$res->junefees</td>
+                          <td>$res->junepaid</td>
+                          
+                          <td style='color: red'>$res->junebalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->julyfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >July</th>
+                          <td>$res->julyfees</td>
+                          <td>$res->julypaid</td>
+                          
+                          <td style='color: red'>$res->julybalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->augustfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >August</th>
+                          <td>$res->augustfees</td>
+                          <td>$res->augustpaid</td>
+                          
+                          <td style='color: red'>$res->augustbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->septemberfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >September</th>
+                          <td>$res->septemberfees</td>
+                          <td>$res->septemberpaid</td>
+                          
+                          <td style='color: red'>$res->septemberbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->octoberfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >October</th>
+                          <td>$res->octoberfees</td>
+                          <td>$res->octoberpaid</td>
+                          
+                          <td style='color: red'>$res->octoberbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+                  if ($res->novemberfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >November</th>
+                          <td>$res->novemberfees</td>
+                          <td>$res->novemberpaid</td>
+                          
+                          <td style='color: red'>$res->novemberbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+
+                  if ($res->decemberfees!=0) {
+                    $term2 .= "
+                    <tr >
+                          <th >December</th>
+                          <td>$res->decemberfees</td>
+                          <td>$res->decemberpaid</td>
+                          
+                          <td style='color: red'>$res->decemberbalance</td>
+                          
+                    </tr>
+                    ";
+                  }
+
+               
+                
+              
 
 
                 $balance = array_sum($sum);
@@ -366,6 +409,16 @@ $DB = new Database();
 
                   $sum = $sum[0];
                 }
+              }else {
+                $term2.="
+                <tr >
+                          <th >No</th>
+                          <td>Student</td>
+                          <td>Details</td>
+                          
+                          <td style='color: red'></td>
+                          
+                    </tr>";
               }
 
               ?>
@@ -376,14 +429,14 @@ $DB = new Database();
                     <th>FEES</th>
                     <th>PAID</th>
                     <th>BALANCE</th>
-                    <th style="padding:10px 3px ;">ACTIONS</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
 
 
-                  <tr>
-                    <?php echo $term2 ?>
+                  <tr >
+                    <?php echo $term2 ?> 
 
                   </tr>
                   <?php
@@ -409,7 +462,7 @@ $DB = new Database();
                     <td></td>
                     <td></td>
 
-                    <th style='color: red;'><b>0 </b></th>
+                    <th style='color: red;'><b>$mbalance</b></th>
                     <td style='padding:10px 3px ;'></td>
                   </tr>
                     ";
@@ -438,7 +491,8 @@ $DB = new Database();
                   <div onclick="addbtn()" style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;margin-left:20px;cursor:pointer;background:#ff2d2d">Add Fees</div>
 
                 </div>
-                <div style="display: flex;flex-basis:90%;flex-direction:column;align-items:center;margin-top:10px;">
+                <div id="pdv" style="display: none;flex-basis:90%;flex-direction:column;align-items:center;margin-top:10px;">
+                
                   <div style="display: flex;width:100%;justify-content:center;align-items:center;margin-top:20px">
                     <div><label for="class">Term: </label></div>
                     <div style="margin-left: 16px;">
@@ -486,20 +540,8 @@ $DB = new Database();
                       <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px;margin-left:-15px"  type="text"  name="" id="rcptno">
                     </div>
                   </div>
-                  <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px">
-                    <div><label for="class">Rcpt/dt </label></div>
-                    <span id="cErr"></span>
-                    <div style="margin-left: 30px;">
-                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px;margin-left:-10px"  type="date" name="" id="rcptdt">
-                    </div>
-                  </div>
-                  <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px">
-                    <div><label for="class">Balance </label></div>
-                    <span id="cErr"></span>
-                    <div style="margin-left: 25px;">
-                      <input style="width: 240px; border: 1px solid #7c7cff;height:35px;border-radius:4px;padding:10px;margin-left:-10px"  type="number" name="" id="bal">
-                    </div>
-                  </div>
+                  
+                
                   <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:20px">
 
                     <div>Fees:</div>
@@ -511,9 +553,24 @@ $DB = new Database();
 
                   </div>
                   <button id="paybtn" style="margin-top: 30px;padding:4px 60px;border:1px solid #009879;border-radius:8px;background:#7ed2f3" onclick="payFees()">Pay </button>
-                  <button id="addbtn" style="margin-top: 30px;padding:4px 60px;border:1px solid #009879;border-radius:8px;background:#ff2d2d;display:none" onclick="addFees()">Add Fees </button>
+                  
 
                 </div>
+                <div id="bdv" style="display: flex;flex-basis:90%;flex-direction:column;align-items:center;margin-top:10px;">
+                <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px;flex-direction:column">
+                <div style="display:flex;width:100%;justify-content:center;align-items:center;margin-top:10px">
+                    <div style="color:red"><label for="class">Balance </label></div>
+                    <span id="cErr"></span>
+                    <div style="margin-left: 25px;">
+                      <input style="width: 240px; border: 1px solid red;height:35px;border-radius:4px;padding:10px;margin-left:-10px"  type="number" name="" id="bal">
+                    </div>
+                  </div>
+                <button id="addbtn" style="margin-top: 30px;padding:4px 60px;border:1px solid #009879;border-radius:8px;background:#ff2d2d;display:block" onclick="addFees()">Set Balance </button>
+              </div>
+            </div>
+
+              </div>
+              <div>
 
               </div>
 
@@ -538,13 +595,13 @@ $DB = new Database();
                   <th>TERM</th>
                   <th>FEES</th>
                   <th>PAID</th>
-                  <th>BALANCE</th>
+                  <th>Trm.BALANCE</th>
 
-
+                  <th>Ttl.BALANCE</th>
                   <th>DATE</th>
                   <th>TIME</th>
                   <th>CLERK</th>
-                  <th>TYPE</th>
+                  
                   <th>YEAR</th>
                   <th style='padding:10px 3px ;'>ACTIONS</th>
 
@@ -559,9 +616,10 @@ $DB = new Database();
 
 
           </div>
-
+        <input style="display: none;" type="text" name="" value="<?php echo($userid);?>" id="inputid">
         </div>
       </div>
+      
 
       <!-- main-panel ends -->
     </div>
@@ -590,21 +648,31 @@ $DB = new Database();
 
 </html>
 <script>
+
+
   const myform = new FormData();
   const href = window.location.href;
   // console.log(href);
   const param = new URLSearchParams(href);
   const url = param.toString();
   // console.log(param.toString());
+  var pb=document.getElementById('paybtn')
 
+  var inp=document.getElementById('inputid').value
 
   const p = url.replace("http%3A%2F%2Flocalhost%2Faccounts%2Fmorepupil.php%3Fid=", "");
 
-  localStorage.setItem("id", p);
+  localStorage.setItem("id", inp);
   const ownid = localStorage.getItem("id");
+
+
   const sendData = (data, type) => {
     let b = document.getElementById('gif')
     b.style.display = 'block'
+
+    
+ 
+
     var xml = new XMLHttpRequest();
 
     xml.onload = function() {
@@ -612,8 +680,12 @@ $DB = new Database();
         handleResult(xml.responseText);
         let b = document.getElementById('gif')
         b.style.display = 'none'
+        // var pb=document.getElementById('paybtn')
+        // pb.disabled='false'
         // let m = document.getElementById('exampleModal')
         // m.style.display = 'none'
+        
+   
 
 
       }
@@ -625,7 +697,7 @@ $DB = new Database();
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    // alert(results)
+    alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {
@@ -682,8 +754,8 @@ $DB = new Database();
     let m = document.getElementById('clm');
     let tm = document.getElementById('tm');
     let rno = document.getElementById('rcptno').value;
-    let  rd= document.getElementById('rcptdt').value;
-    let bal=document.getElementById('bal').value;
+
+    
 
     let yv = y.value
   
@@ -707,9 +779,12 @@ $DB = new Database();
           fees: clv3,
           id: ownid,
           no:rno,
-          dt:rd,
-          bal:bal
+         
+       
         }, 'payFees')
+
+       
+    // pb.disabled='true'
 
       }
     }
@@ -721,55 +796,40 @@ $DB = new Database();
   }
 
   function paybtn() {
-    let pb = document.getElementById('paybtn')
-    let ab = document.getElementById('addbtn')
+    let pb = document.getElementById('pdv')
+    let ab = document.getElementById('bdv')
 
-    pb.style.display = 'block'
+    pb.style.display = 'flex'
     ab.style.display = 'none'
 
   }
 
   function addbtn() {
-    let pb = document.getElementById('paybtn')
-    let ab = document.getElementById('addbtn')
+    let pb = document.getElementById('pdv')
+    let ab = document.getElementById('bdv')
 
     pb.style.display = 'none'
-    ab.style.display = 'block'
+    ab.style.display = 'flex'
 
   }
 
   function addFees() {
 
 
-    let y = document.getElementById('y');
-    let f = document.getElementById('cl3');
-    let m = document.getElementById('clm');
-    let tm = document.getElementById('tm');
-    let rno = document.getElementById('rcptno').value;
-    let  rd= document.getElementById('rcptdt').value;
-
-    let yv = y.value
-    let mv = m.value
-    let clv3 = f.value
-    let tmy = tm.value
-
-    if (clv3 == "") {
-      let fre = document.getElementById('fr');
-      fre.innerHTML = "Fees can't be empty"
+    
+    let cb = document.getElementById('bal').value;
+   
+    if (cb == "") {
+ alert('Balance cant be empty')
 
 
     } else {
-      let c = window.confirm(`Do you want to add sh ${clv3} for Term ${tmy} Year ${yv} `);
+      let c = window.confirm(`Do you want to add balance ${cb} `);
       if (c) {
         sendData({
 
-          term: tmy,
-          year: yv,
-          month: mv,
-          fees: clv3,
-          id: ownid,
-          no:rno,
-          dt:rd
+          balance:cb,
+          id:ownid
         }, 'addFees')
 
       }

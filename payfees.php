@@ -10,37 +10,45 @@ $yer = $DATA_OBJECT->year;
 $tn = $DATA_OBJECT->term;
 $err = "";
 if (empty($DATA_OBJECT->no)) {
-    $no="";
-}else{
-    $no=$DATA_OBJECT->no;
+    $no = "";
+} else {
+    $no = $DATA_OBJECT->no;
 }
 if (empty($DATA_OBJECT->dt)) {
-    $dt="";
-}else{
-    $dt=$DATA_OBJECT->dt;
+    $dt = "";
+} else {
+    $dt = $DATA_OBJECT->dt;
 }
-if (empty($DATA_OBJECT->bal)) {
-    $lyb=0;
-}else{
-    $lyb=$DATA_OBJECT->bal;
-}
+
+
+
+
+
+
 
 $sql = false;
 
+$feesmonth = $mth . "fees";
+$feespaid = $mth . "paid";
+$feesbalance = $mth . "balance";
 
-$sql = "SELECT * FROM pupils WHERE userid='$id' and year=$yer";
+$sql = "SELECT * FROM pupils WHERE userid='$id' and year=$yer LIMIT 1";
 $res = $DB->read($sql, []);
 if (is_array($res)) {
     $res = $res[0];
     $query = false;
 
 
-    $set = $res->$mth;
-    $bal = ($set) - ($fees);
 
-    if ($set == 0) {
+    $feepaying = ($res->$feespaid) + $fees;
 
-        $info->message = " ERROR:VoteHead  for $mth  has not been set";
+
+
+    if ($res->$feesmonth == 0) {
+
+        $err = " ERROR:VoteHead  for $mth  has not been set";
+
+        $info->message = $err;
 
         $info->type = "err";
         echo json_encode($info);
@@ -48,78 +56,76 @@ if (is_array($res)) {
 
 
         $sql = false;
-        $sql = "SELECT * FROM fees WHERE userid='$id' and year=$yer";
+        $sql = "SELECT * FROM pupils WHERE userid='$id' and year=$yer LIMIT 1";
         $fes = $DB->read($sql, []);
         if (is_array($fes)) {
-            foreach ($fes as $row) {
-                if ($row->month == $mth) {
-                    $md = strtoupper($mth);
-                    $err = "error";
-                    $info->message = "$md fees have already been payed.";
 
-                    $info->type = "err";
-                    echo json_encode($info);
-                }
-            }
+
+
             if ($err == "") {
-                $query=false;
-                $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year,recieptno,recieptdate,lastyear) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer,'$no','$dt',$lyb) ";
+                $query = false;
+                $query = "UPDATE pupils set $feespaid=$feepaying WHERE userid='$id' and year =$yer";
                 $read = $DB->write($query, []);
                 if ($read) {
-                   
-                    $query=false;
-                    $clerk='Truphena';
-                    $datem=date('d-m');
-                    $time=date('H:i');
-   
-                    $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type,recieptno,recieptdate) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new','$no','$dt')";
-                    $stmt=$DB->write($query,[]);
+                    $sql = false;
+                    $sql = "SELECT * FROM pupils WHERE userid='$id' and year=$yer LIMIT 1";
+                    $ress = $DB->read($sql, []);
+                    if (is_array($ress)) {
+                        $ress = $ress[0];
+
+                        $set = $ress->$feesmonth;
+                        $setp = $ress->$feespaid;
+                        $bal = ($set) - ($setp);
+
+                        $query = false;
+                        $query = "UPDATE pupils set $feesbalance=$bal WHERE userid='$id' and year =$yer";
+                        $readtp = $DB->write($query, []);
+                        if ($readtp) {
+                            $gh = 0;
+                        } else {
+                            $err = 'Opps!!Error occured';
+                        }
+                    }
+
+                    $sql = false;
+                    $sql = "SELECT  * FROM pupils WHERE userid='$id' and year=$yer LIMIT 1";
+                    $rest = $DB->read($sql, []);
+
+
+                    $term2 = "";
+                    $balance = "";
+                    $sum = array();
+
+                    if (is_array($rest)) {
+                        // echo "<pre>";
+                        // print_r($res);
+                        $rest = $rest[0];
+
+                        $mbalance = ($rest->januarybalance) + ($rest->februarybalance) + ($rest->marchbalance) + ($rest->aprilbalance) + ($rest->maybalance) + ($rest->junebalance) + ($rest->julybalance) + ($rest->augustbalance) + ($rest->septemberbalance) + ($rest->octoberbalance) + ($rest->novemberbalance) + ($rest->decemberbalance) + ($rest->lastyearbalance);
+                    }
+
+                    $query = false;
+                    $clerk = 'Truphena';
+                    $datem = date('d-m');
+                    $time = date('H:i');
+
+                    $query = "INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,recieptno,totalbalance) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'$no',$mbalance)";
+                    $stmt = $DB->write($query, []);
                     if ($stmt) {
                         $info->message = "Fess payed Succefully";
 
                         $info->type = "pay";
                         echo json_encode($info);
-                        
-                       
-                    }else {
-                       $info->message = "Statement not created";
-   
-                       $info->type = "err";
-                       echo json_encode($info);
-                    }
+                    } else {
+                        $info->message = "Statement not created";
 
+                        $info->type = "err";
+                        echo json_encode($info);
+                    }
                 }
-                
             }
         } else {
-            $query=false;
-            $query = "INSERT INTO fees(userid,month,term,fees,paid,balance,year,recieptno,recieptdate,lastyear) VALUES('$id','$mth',$tn,$set,$fees,$bal,$yer,'$no','$dt',$lyb) ";
-            $read2 = $DB->write($query,[]);
-            if ($read2) {
-                
-                $query=false;
-                $clerk='Truphena';
-                $datem=date('d-m');
-                $time=date('H:i');
-
-                $query="INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,type,recieptno,recieptdate) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'new','$no','$dt')";
-                $stmt=$DB->write($query,[]);
-                if ($stmt) {
-                    $info->message = "Fess payed Succefully";
-
-                    $info->type = "pay";
-                    echo json_encode($info);
-                
-                }else {
-                    $info->message = "Statement not created";
-
-                    $info->type = "err";
-                    echo json_encode($info);
-                }
-                
-            }
-            
-            
+            $err = "ERROR : Student not nound";
         }
     }
 } else {
@@ -128,6 +134,3 @@ if (is_array($res)) {
     $info->type = "pay";
     echo json_encode($info);
 }
-
-
-
