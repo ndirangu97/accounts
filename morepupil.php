@@ -18,7 +18,10 @@ $year2=date('Y');
         $class=$rese->class;
       }
    
-      
+//       $date = '2022-06-26 ';
+// $convertDate = date('F jS, Y ', strtotime($date));
+// echo $convertDate;
+     
 
 ?>
 
@@ -212,6 +215,7 @@ $year2=date('Y');
               <?php
               $id = $_GET['id'];
               $year=date('Y');
+              // $year=2023;
 
               $sql = false;
               $sql = "SELECT  * FROM pupils WHERE userid='$id' and year=$year";
@@ -472,13 +476,6 @@ $year2=date('Y');
                   ?>
 
 
-
-
-
-
-
-
-
                 </tbody>
               </table>
 
@@ -697,7 +694,7 @@ $year2=date('Y');
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    alert(results)
+    // alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {

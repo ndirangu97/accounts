@@ -13,52 +13,28 @@ if (is_array($results)) {
 
 
         
+        $mbalance = ($row->januarybalance) + ($row->februarybalance) + ($row->marchbalance) + ($row->aprilbalance) + ($row->maybalance) + ($row->junebalance) + ($row->julybalance) + ($row->augustbalance) + ($row->septemberbalance) + ($row->octoberbalance) + ($row->novemberbalance) + ($row->decemberbalance) + ($row->lastyearbalance);
 
        $class=$row->class;
        $id=$row->userid;
        $stream=$row->stream;
        $name=$row->name;
         $year=date('Y');
+        // $year=2023;
 
        $new=$class+1;
 
        $query=false;
-       $query="INSERT INTO  pupils(class,stream,userid,year,name) VALUES($new,'$stream','$id',$year,'$name')";
+       $query="INSERT INTO  pupils(class,stream,userid,year,name,lastyearbalance) VALUES($new,'$stream','$id',$year,'$name',$mbalance)";
        $write=$DB->write($query,[]);
        if ($write) {
         $mess="<p style='color:green'> Pupils transfered  successfully </p>";
         $y1=date('Y');
-        $y2=date('Y')-1;
-
-        $sql=false;
-        $sql="SELECT * FROM fees WHERE userid='$id' and year=$y2";
+    
         
-        $p=$DB->read($sql,[]);
-        $bal=array();
-        if (is_array($p)) {
-            foreach ($p as $keyp) {
-                array_push($bal, $keyp->balance);
-            }
-            $balance = array_sum($bal);
 
-            $fy=date('Y');
-            
-
-            $query=false;
-            $query="INSERT into fees(lastyear,year,userid) VALUES($balance,$fy,'$id') ";
-            $wr=$DB->write($query,[]);
-
-            if ($wr) {
-                # code...
-                $b=0;
-            }else {
-                $m=0;
-            }
-
-            
-        }else {
-            $a=0;
-        }
+        
+       
            
        }else {
         $err="<p style='color:red'> ERROR :pupils not transferred </p>";

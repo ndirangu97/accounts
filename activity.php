@@ -46,24 +46,25 @@
             <!-- partial -->
             <div class="bodyWrapper">
 
-                <div class='card' style="width: 80%;height:200px;background:red; display: flex;justify-content: space-around;
+                <div  style="width: 80%;height:200px;display: flex;justify-content: space-around;
       align-items: center; flex-direction: row;">
-                    <div style="flex-basis: 50%;height: 100%;display: flex;justify-content: space-around;
+                    <div class='card' style="flex-basis: 45%;height: 100%;display: flex;justify-content: space-around;
       align-items: center; flex-direction: column;">
-                        <h5>Print Today's Activity</h5>
-                        <p>Print</p>
+                        <h5>Download Today's Activity</h5>
+                        <button onclick="printact()" style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3">
+                        Download</button>
                     </div>
-                    <div style="flex-basis: 50%;height: 100%;display: flex;justify-content: space-around;
-      align-items: center; flex-direction: column;background:green">
-                        <h5>Print Activity</h5>
-                        <div style="display: flex;justify-content: space-around;
+                    <div  class='card'style="flex-basis: 45%;height: 100%;display: flex;justify-content: space-around;
+      align-items: center; flex-direction: column;">
+                        <h5>Download Activity</h5>
+                        <div style="display: flex;justify-content: space-between;
       align-items: center; flex-direction: row;">
-                            <input type="date" name="" id="">
-                            <p>print</p>
+                            <input id="act" style="border:1px solid #009879;border-radius:4px;height:30px;width:150px;" type="date" name="" id="">
+                        <button  onclick="pallact()"  style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3;margin-left:30px">Download</button>
                         </div>
                     </div>
                 </div>
-                <div class='card' style="width: 80%;height:200px;background:red"></div>
+                
 
             </div>
 
@@ -170,5 +171,19 @@
         if (c) {
             sendData({}, 'import')
         }
+    }
+    function printact() {
+        window.open('download.php')
+    }
+
+    function pallact() {
+        let t= document.getElementById('act').value
+      if (t=="") {
+        alert('Date cant be empty')
+
+      }else{
+          window.open(`allactivity.php?date=${t}`)
+      }
+     
     }
 </script>

@@ -174,7 +174,7 @@
              
             </div>
 
-            <div id="headModal" style="position: absolute;right: 0;top: 0;height: 100%;width: 400px;z-index: 1;border-top-left-radius: 10px;display: none;flex-direction: column;overflow-y: scroll;border:1px solid #009879;background: #ffffff; ">
+            <div id="headModal" style="position: absolute;right: 0;top: 0;height: 540px;width: 400px;z-index: 1;border-top-left-radius: 10px;display: none;flex-direction: column;overflow-y: scroll;border:1px solid #009879;background: #ffffff; ">
               <div style="flex-basis: 8%;display: flex;margin-bottom: 10px;margin-top: 10px;">
 
                 <div style="display:flex;justify-content: center;align-items: center;width: 100%;position: relative;" >
@@ -271,7 +271,7 @@
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    // alert(results);
+    alert(results);
     var info = JSON.parse(results);
 
     switch (info.type) {

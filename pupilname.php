@@ -8,6 +8,8 @@
     $name=$DATA_OBJECT->name;
     $r=8;
     $year=date('Y');
+    // $year=2023;
+
 
     $sql="SELECT * FROM pupils WHERE name LIKE '%$name%'  and year=$year";
     $results=$DB->read($sql,[]);

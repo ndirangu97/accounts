@@ -100,6 +100,7 @@ if (is_array($res)) {
                         // echo "<pre>";
                         // print_r($res);
                         $rest = $rest[0];
+                        $name=$rest->name;
 
                         $mbalance = ($rest->januarybalance) + ($rest->februarybalance) + ($rest->marchbalance) + ($rest->aprilbalance) + ($rest->maybalance) + ($rest->junebalance) + ($rest->julybalance) + ($rest->augustbalance) + ($rest->septemberbalance) + ($rest->octoberbalance) + ($rest->novemberbalance) + ($rest->decemberbalance) + ($rest->lastyearbalance);
                     }
@@ -121,6 +122,17 @@ if (is_array($res)) {
 
                         $info->type = "err";
                         echo json_encode($info);
+                    }
+
+                    $query = false;
+                    $datem2 = date('Y-m-d');
+
+                    $query = "INSERT into activity(name,date,amount,time,clerk,balance) VALUES('$name','$datem2',$fees,'$time','$clerk',$mbalance)";
+                    $act = $DB->write($query, []);
+                    if ($act) {
+                      $acti=0;
+                    } else {
+                        $actids=0;
                     }
                 }
             }

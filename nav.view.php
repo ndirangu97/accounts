@@ -23,7 +23,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link"  href="./activity.php">
-              <i class="typcn typcn-th-small-outline menu-icon"></i>
+            <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">Activity</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="./ledger.php">
+            <i class="typcn typcn-chart-pie-outline menu-icon"></i>
               <span class="menu-title">Ledger</span>
             </a>
           </li>

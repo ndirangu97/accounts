@@ -1,5 +1,5 @@
 <?php
-print_r($DATA_OBJECT);
+
 $balance=$DATA_OBJECT->balance;
 $id=$DATA_OBJECT->id;
 $yer=date('Y');
