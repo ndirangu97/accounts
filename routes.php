@@ -60,6 +60,10 @@ if (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "login") {
 } elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "deletePupil") {
   include "./includes/deletePupil.php";
 }
+ elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "reciept") {
+  include "./recieptinclude.php";
+}
+
 
 
 

@@ -20,7 +20,7 @@ if (is_array($read)) {
         $getres=$DB->read($sql,[]);
 
         if (is_array($getres)) {
-           
+           $b=0;
         }else {
             $no++;
             

@@ -57,7 +57,7 @@ $year2=date('Y');
     padding: 0 10px;
     display: flex;
     flex-direction: column;
-    
+    flex-wrap: wrap;
     height: 600px;
     width: 100%;
     overflow-y: hidden;
@@ -81,100 +81,7 @@ $year2=date('Y');
     color: #ffffff;
     text-align: left;
     font-weight: bold;
-  } 
-
-.wrapping {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.reciept {
-  min-height: 400px;
-  width: 600px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-
-
-}
-
-.rchead {
-  padding: 6px 0;
-  text-align: center;
-  height: 100px;
-  width: 100%;
-  border-bottom: 1px solid black;
-
-}
-
-.rcpcont {
-  display: flex;
-  width: 100%;
- 
-  margin-bottom:60px
-
-
-}
-
-.lftrcpcont {
-  flex-basis: 49%;
-  height: 100%;
-border-bottom: 1px solid black;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  
-
-}
-.lftrcpcont2 {
-  flex-basis: 49%;
-
-  height: 100%;
-  
-  margin-left: 20px;
-  display: flex;
-  
-
-}
-
-.lft {
-  flex-basis: 50%;
-
-}
-
-
-
-.rft {
-  flex-basis: 50%;
-  
-}
-
-.rghttrcpcont {
-  flex-basis: 49%;
-  height: 100%;
-
-}
-
-.content-table2 {
-  width: 100%;
-  height: 460px;
-  border-bottom: 1px solid black;
-
-}
-
-.content-table2 tr {
-  text-align: left;
-
-}
-
-.content-table2 td {
-  padding: 2px 15px;
-  text-align: left;
-}
+  }
 
   .content-table th,
   .content-table td {
@@ -214,41 +121,6 @@ border-bottom: 1px solid black;
     width: 5px;
     height: 10px;
   }
-  
-  .content-table2 {
-      width: 100%;
-      height: 460px;
-      border-bottom: 1px solid black;
-
-    }
-
-    .content-table2 tr {
-      text-align: left;
-
-    }
-
-    .content-table2 td {
-      
-      text-align: left;
-    }
-    .lftrcpcont {
-      flex-basis: 49%;
-      height: 100%;
-      border-right: 1px solid black;
-      margin-left: 20px;
-      display: flex;
-      
-
-    }
-    .lftrcpcont2 {
-      flex-basis: 49%;
-      height: 100%;
-      
-      margin-left: 20px;
-      display: flex;
-      
-
-    }
 </style>
 </head>
 
@@ -339,10 +211,10 @@ border-bottom: 1px solid black;
         </div>
 
 
-        <div style="display: flex;height: 540px;position:relative;flex-direction:column;" id="cardHolder">
+        <div style="display: flex;height: 580px;position:relative;flex-direction:column;" id="cardHolder">
 
           <div style="display: flex;flex-basis:100%;overflow-y:scroll">
-            <div style="flex-basis:65%;height:540px;overflow-y:scroll" id="tb">
+            <div style="flex-basis:65%;height:570px;overflow-y:scroll" id="tb">
               <?php
               $id = $_GET['id'];
               $year=date('Y');
@@ -714,8 +586,36 @@ border-bottom: 1px solid black;
 
         </div>
 
-        <div style="display: none;height: 400px;position:relative;flex-direction:column;overflow:auto;width:100%;" id="stmtHolder">
-          
+        <div style="display: none;height: 540px;position:relative;flex-direction:column;overflow:auto;width:100%;" id="stmtHolder">
+          <div style="width: 100%;height:540px;overflow-y:scroll">
+            <table width='100%' class='content-table'>
+              <thead>
+                <tr>
+                  <th>MONTH</th>
+                  <th>TERM</th>
+                  <th>FEES</th>
+                  <th>PAID</th>
+                  <th>Trm.BALANCE</th>
+
+                  <th>Ttl.BALANCE</th>
+                  <th>DATE</th>
+                  <th>TIME</th>
+                  <th>CLERK</th>
+                  
+                  <th>YEAR</th>
+                  <th style='padding:10px 3px ;'>ACTIONS</th>
+
+
+                </tr>
+              </thead>
+              <tbody id="stmtable">
+
+
+              </tbody>
+            </table>
+
+
+          </div>
         <input style="display: none;" type="text" name="" value="<?php echo($userid);?>" id="inputid">
         </div>
       </div>
@@ -797,7 +697,7 @@ border-bottom: 1px solid black;
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    alert(results)
+    // alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {
@@ -829,7 +729,7 @@ border-bottom: 1px solid black;
         erd.innerHTML = info.message
         break;
       case 'stmt':
-        let stt = document.getElementById('stmtHolder')
+        let stt = document.getElementById('stmtable')
         stt.innerHTML = info.message
         break;
       case 'transfer':

@@ -18,7 +18,7 @@ Class Database
 		try
 		{
 		   
-			$connection = new PDO('sqlite:./milimani.db');
+			$connection = new PDO('sqlite:../milimani.db');
 			return $connection;
             echo("connected to DB");
 
