@@ -107,7 +107,7 @@ if (is_array($res)) {
 
                     $query = false;
                     $clerk = 'Truphena';
-                    $datem = date('d-m');
+                    $datem = date('Y-d-m');
                     $time = date('H:i');
 
                     $query = "INSERT into statement(userid,month,fees,paid,balance,term,clerk,date,time,year,recieptno,totalbalance) VALUES('$id','$mth',$set,$fees,$bal,$tn,'$clerk','$datem','$time',$yer,'$no',$mbalance)";

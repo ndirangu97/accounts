@@ -16,6 +16,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link"  href="./catlanding.php">
+            <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+              <span class="menu-title">Categories</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link"  href="./actions.php" >
               <i class="typcn typcn-compass menu-icon"></i>
               <span class="menu-title">Actions</span>
@@ -33,5 +39,6 @@
               <span class="menu-title">Ledger</span>
             </a>
           </li>
+          
         </ul>
       </nav>

@@ -58,7 +58,7 @@ $year2=date('Y');
     display: flex;
     flex-direction: column;
     
-    height: 600px;
+    height: 540px;
     width: 100%;
     overflow-y: hidden;
 
@@ -115,29 +115,37 @@ $year2=date('Y');
   display: flex;
   width: 100%;
  
-  margin-bottom:60px
+  margin-bottom:60px;
+  
 
 
 }
 
 .lftrcpcont {
   flex-basis: 49%;
-  height: 100%;
-border-bottom: 1px solid black;
+  min-height: 300px !important;
+
   margin-left: 20px;
   display: flex;
   flex-direction: column;
-  
-
+  border-right: 1px solid black;
+  position: relative;
+}
+.ttl{
+  margin-top: auto;
+  display: flex;
+  border-top: 1px solid black;
 }
 .lftrcpcont2 {
   flex-basis: 49%;
+  min-height: 300px !important;
 
-  height: 100%;
-  
   margin-left: 20px;
   display: flex;
-  
+  flex-direction: column;
+ 
+  position: relative;
+ 
 
 }
 
@@ -152,6 +160,7 @@ border-bottom: 1px solid black;
   flex-basis: 50%;
   
 }
+
 
 .rghttrcpcont {
   flex-basis: 49%;
@@ -231,24 +240,8 @@ border-bottom: 1px solid black;
       
       text-align: left;
     }
-    .lftrcpcont {
-      flex-basis: 49%;
-      height: 100%;
-      border-right: 1px solid black;
-      margin-left: 20px;
-      display: flex;
-      
-
-    }
-    .lftrcpcont2 {
-      flex-basis: 49%;
-      height: 100%;
-      
-      margin-left: 20px;
-      display: flex;
-      
-
-    }
+  
+   
 </style>
 </head>
 
@@ -261,8 +254,8 @@ border-bottom: 1px solid black;
     <div class="container-fluid page-body-wrapper">
     <?php include './nav.view.php'; ?>
       <!-- partial -->
-      <div class="bodyWrapper" style="height:100%">
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="bodyWrapper" >
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -309,12 +302,12 @@ border-bottom: 1px solid black;
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div id="error" style="height: 20px;width:100%;display:none;justify-content:center;align-items:center;color:red"></div>
         <div style="height: 40px;width:100%;display:flex;justify-content:center;align-items:center;margin-bottom:10px;position:relative">
           <div id='feecal' style="display:flex;margin-right:40px;align-items:center">
             <img src="./images/calendar.png" height="20px" width="20px">
-            <input style="border:1px solid #009879;border-radius:4px;height:30px;width:100px;margin-left:10px" oninput="yearfees(event)" type="number" max="2100" min="2019" value="2022">
+            <input style="border:1px solid #009879;border-radius:4px;height:30px;width:100px;margin-left:10px" oninput="yearfees(event)" type="number" max="2100" min="2019" value="<?php echo(date('Y')) ?>">
           </div>
 
           <div onclick="fee()" style="padding: 5px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer">
@@ -323,15 +316,29 @@ border-bottom: 1px solid black;
           <!-- <div onclick="stmt()" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
             Statement
           </div> -->
+          
           <div onclick="stmt()" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
             Reciepts
           </div>
+          <div id="nmi" style="margin-left: 20px;display:none">
+            <img src="./images/calendar.png" height="20px" width="20px">
+            <input oninput="sendData({id:ownid,year:this.value},'rcpt')" id="sy" type="number" min='2019' max="2100" value="<?php echo(date('Y')) ?>" style="border: 1px solid #009879;border-radius:4px;height:30px;padding-left:10px;width:80px" />
+            
+          </div>
+          
+          <div onclick="date()" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
+            Dates
+          </div>
           <div id="stbtn" style="margin-left: 20px;display:none">
             <img src="./images/calendar.png" height="20px" width="20px">
-            <input oninput="sendData({id:ownid,year:this.value},'stmt')" id="sy" type="number" min='2019' max="2100" value="2022" style="border: 1px solid #009879;border-radius:4px;height:30px;padding-left:10px" />
+            <input oninput="sendData({id:ownid,year:this.value},'stmt')" id="sy" type="number" min='2019' max="2100" value="<?php echo(date('Y')) ?>" style="border: 1px solid #009879;border-radius:4px;height:30px;padding-left:10px;width:80px" />
           </div>
-          <div data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
+          
+          <!-- <div data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
             Transfer
+          </div> -->
+          <div onclick="transpupil()" style="padding: 5px 10px;border:1px solid #009879;border-radius:8px;margin-left:40px;cursor:pointer">
+            Edit
           </div>
 
 
@@ -339,10 +346,10 @@ border-bottom: 1px solid black;
         </div>
 
 
-        <div style="display: flex;height: 540px;position:relative;flex-direction:column;" id="cardHolder">
+        <div style="display: flex;height: 440px;position:relative;flex-direction:column;" id="cardHolder">
 
           <div style="display: flex;flex-basis:100%;overflow-y:scroll">
-            <div style="flex-basis:65%;height:540px;overflow-y:scroll" id="tb">
+            <div style="flex-basis:65%;height:460px;overflow-y:scroll" id="tb">
               <?php
               $id = $_GET['id'];
               $year=date('Y');
@@ -612,8 +619,8 @@ border-bottom: 1px solid black;
 
             </div>
             <div style="flex-basis: 32%">
-              <div style="display: flex;flex-direction:column;width: 100%;height:500px;border:1px solid #009879;border-radius:8px;margin-left:20px">
-                <div style="display: flex;justify-content:center;flex-basis:10%;margin-top:10px;align-items:center">
+              <div style="display: flex;flex-direction:column;width: 100%;height:440px;border:1px solid #009879;border-radius:8px;margin-left:20px">
+                <div  style="display: flex;justify-content:center;flex-basis:10%;margin-top:10px;align-items:center">
 
                   <div onclick="paybtn()" style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;cursor:pointer;background:#7ed2f3">Pay Fees</div>
                   <div onclick="addbtn()" style="padding: 2px 20px;border:1px solid #009879;border-radius:8px;margin-left:20px;cursor:pointer;background:#ff2d2d">Add Balance</div>
@@ -797,7 +804,7 @@ border-bottom: 1px solid black;
     xml.send(dataString);
   };
   const handleResult = (results) => {
-    alert(results)
+    // alert(results)
     var info = JSON.parse(results);
 
     switch (info.type) {
@@ -942,11 +949,13 @@ border-bottom: 1px solid black;
     let t = document.getElementById('stmtHolder')
     let sb = document.getElementById('stbtn')
     let fc = document.getElementById('feecal')
+    let cpi = document.getElementById('nmi')
     sb.style.display = 'none'
 
     c.style.display = 'flex'
     t.style.display = 'none'
     fc.style.display = 'flex'
+    cpi.style.display = 'none'
 
   }
 
@@ -957,29 +966,63 @@ border-bottom: 1px solid black;
     let yi = document.getElementById('sy')
     let sb = document.getElementById('stbtn')
     let fc = document.getElementById('feecal')
+    let cpi = document.getElementById('nmi')
 
     c.style.display = 'none'
-    sb.style.display = 'block'
+    sb.style.display = 'none'
     t.style.display = 'flex'
     fc.style.display = 'none'
-
+    cpi.style.display = 'flex'
     sendData({
       id: ownid,
       year: yi.value
     }, 'reciept');
 
   }
+  
+  function date() {
 
-  function trans() {
-    let cl = document.getElementById('class')
-    let l = document.getElementById('stream')
+let c = document.getElementById('cardHolder')
+let t = document.getElementById('stmtHolder')
+let yi = document.getElementById('sy')
+let sb = document.getElementById('stbtn')
+let fc = document.getElementById('feecal')
+let cpi = document.getElementById('nmi')
 
-    sendData({
-      class: cl.value,
-      stream: l.value,
-      id: ownid
-    }, 'trans')
+c.style.display = 'none'
+sb.style.display = 'block'
+t.style.display = 'flex'
+fc.style.display = 'none'
+cpi.style.display = 'none'
+sendData({
+  id: ownid,
+  year: yi.value
+}, 'stmt');
+
+}
+
+  // function trans() {
+  //   let cl = document.getElementById('class')
+  //   let l = document.getElementById('stream')
+
+  //   sendData({
+  //     class: cl.value,
+  //     stream: l.value,
+  //     id: ownid
+  //   }, 'trans')
+  // }
+  
+  function transpupil() {
+    // let cl = document.getElementById('class')
+    // let l = document.getElementById('stream')
+
+    // sendData({
+    //   id:ownid,
+      
+    // }, 'edipupil')
+    window.location=`./editpupil.php?id=${ownid}`;
   }
+
 
   function yearfees(e) {
 

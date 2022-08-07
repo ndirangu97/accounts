@@ -32,7 +32,7 @@ if (is_array($read)) {
         $name=$row->name;
 
 
-        $query="INSERT INTO pupils(userid,class,stream,year,name)VALUES('$id',$class,'$stream',$yr,'$name') ";
+        $query="INSERT INTO pupils(userid,class,stream,year,name,categories)VALUES('$id',$class,'$stream',$yr,'$name','pupils') ";
         $save=$DB->write($query,[]);
         if ($save) {
             $mess="<p style='color:green'>  $no Pupils imported successfully </p>";

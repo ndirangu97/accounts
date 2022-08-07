@@ -6,7 +6,7 @@
 $foot = "";
 
 $id = $DATA_OBJECT->id;
-$year = date('Y');
+$year = $DATA_OBJECT->year;
 
 $sql = false;
 $sql = "SELECT  * FROM pupils WHERE userid='$id' and year=$year LIMIT 1";
@@ -483,19 +483,7 @@ $convertDate = date('F jS, Y ', strtotime($date));
 
 
     $balance = array_sum($sum);
-} else {
-    $term2 .= "
-  <tr >
-            <th >No</th>
-            <td>Student</td>
-            <td>Details</td>
-            
-            <td style='color: red'></td>
-            
-      </tr>";
-}
-
-
+    
 if ($balance != 0) {
     $foot .= "
     
@@ -596,6 +584,19 @@ $mess .= "
 $info->message = $mess;
 $info->type = 'stmt';
 echo json_encode($info);
+} else {
+   
+$mess .= "<div style='width:100%;height:100%;display:flex;justify-content:center;align-items:center;'>
+    
+<p style='color:red'> No reciept found for  $year</p>
+        </div>";
+
+$info->message = $mess;
+$info->type = 'stmt';
+echo json_encode($info);
+}
+
+
 
 
 

@@ -1,3 +1,4 @@
+
 <?php
 
 require_once "./connection.php";
@@ -5,6 +6,7 @@ require_once "./connection.php";
 $DB = new Database();
 $class =  $_GET['class'];
 $stream = $_GET['stream'];
+
 
 $year = date('Y');
 

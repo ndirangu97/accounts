@@ -1,4 +1,5 @@
 <?php
+
    
 
     $m=$DATA_OBJECT->month;
@@ -7,7 +8,9 @@
     $cl = $DATA_OBJECT->class;
     $err="";
     $feesmonth=$m."fees";
-    $feesbalance= $m."balance";    
+    $feesbalance= $m."balance"; 
+    $cat=$DATA_OBJECT->category;
+    
 
     $sql=false;
     $sql="SELECT * FROM pupils WHERE class=$cl and year=$y";
@@ -27,7 +30,7 @@
         if ($err=="") {
         
             $query = false;
-            $query = "UPDATE  pupils SET '$feesmonth'=$fees,'$feesbalance'=$fees  WHERE class=$cl and year=$y  ";
+            $query = "UPDATE  pupils SET '$feesmonth'=$fees,'$feesbalance'=$fees  WHERE class=$cl  and year=$y and categories='$cat' ";
             $write = $DB->write($query, []);
         
             if ($write) {

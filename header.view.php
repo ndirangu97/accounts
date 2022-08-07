@@ -39,19 +39,49 @@
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-date dropdown">
-            <a class="
-                  nav-link
-                  d-flex
-                  justify-content-center
-                  align-items-center
-                " href="javascript:;">
-              <!-- <h6 class="date mb-0"><?php echo date("Y"); ?></h6> -->
-              <i class="typcn typcn-calendar"></i>
-            </a>
-          </li>
+          
           <li class="nav-item nav-profile dropdown">
             <div class="input-group">
+            <div>
+               
+                <span id="cErr"></span>
+                <select   name="class" id="class" style="width: 60px;border: 1px solid #7c7cff ;border-radius: 4px;height:44px">
+              
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                  
+                  <option value="8">8</option>
+                </select>
+              </div>
+              <div >
+
+                <span id="sErr"></span>
+                <select name="stream" id="stream" style="width: 60px;border: 1px solid #7c7cff ;border-radius: 4px;height:44px">
+                <option value="C">C</option>
+                <option value="B">B</option>
+                <option value="L">L</option>
+                <option value="G">G</option>
+                <option value="P">P</option>
+          
+                <option value="R">R</option>
+               
+             
+                <option value="E">E</option>
+                <option value="T">T</option>
+         
+       
+               
+                <option value="J">J</option>
+              
+               
+              
+                </select>
+              </div>
               <input type="text" class="form-control" placeholder="Search pupil..." aria-label="search" aria-describedby="search" style="width: 400px" oninput='pupilName(event)' />
               <div class="input-group-prepend" style="cursor: pointer">
                 <span class="input-group-text" id="search">

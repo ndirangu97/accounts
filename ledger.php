@@ -57,7 +57,7 @@
                             <div>
                                 <!-- <label for="class">Class: </label> -->
                                 
-                                <select name="class" id="class" style="width: 80px;border: 1px solid #7c7cff ;border-radius: 4px;">
+                                <select name="class" id="class34" style="width: 80px;border: 1px solid #7c7cff ;border-radius: 4px;">
                                 <option value="all">All</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -72,7 +72,7 @@
                             <div style="margin-left: 20px;">
                                 <!-- <label for="stream">Stream: </label> -->
                         
-                                <select name="stream" id="stream" style="width: 80px;border: 1px solid #7c7cff ;border-radius: 4px;">
+                                <select name="stream" id="stream34" style="width: 80px;border: 1px solid #7c7cff ;border-radius: 4px;">
                                 <option value="all">All</option>    
                                 <option value="E">E</option>
                                     <option value="T">T</option>
@@ -251,8 +251,9 @@
     }
 
     function pallact() {
-        let c = document.getElementById('class').value
-        let s = document.getElementById('stream').value
+        let c = document.getElementById('class34').value
+        let s = document.getElementById('stream34').value
+        
         
         window.open(`classledger.php?class=${c}&stream=${s}`)
         

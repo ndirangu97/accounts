@@ -63,6 +63,39 @@ if (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "login") {
  elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "reciept") {
   include "./recieptinclude.php";
 }
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "category") {
+  include "./categoryinclude.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "catpupilname") {
+  include "./catname.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "assigncat") {
+  include "./catdesignation.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delcatname") {
+  include "./delcatnameinc.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getpplcat") {
+  include "./getpeopleinclude.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "pupildesigname") {
+  include "./catdesigname.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "edipupil") {
+  include "./pupilbio.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "addPupil") {
+  include "./addpupilinclude.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delacppl") {
+  include "./delppl.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delcatnameppl") {
+  include "./delpplcatcat.php";
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "rcpt") {
+  include "./gtrcptinc.php";
+}
 
 
 
