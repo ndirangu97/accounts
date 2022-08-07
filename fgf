@@ -1,0 +1,6 @@
+  <div onclick='window.location=`./addpupilimage2.php?id=${ownid}`' class='t' style='width:100%;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:1.5s;border-bottom:1px solid  #9999;position:relative'>Add Image
+
+                                </div>
+                                <div class='t' onclick='window.location=`./addpupil2.php?id=${ownid}`' style='width:100%;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:1.5s;border-bottom:1px solid  #9999 '>Edit Bio</div>
+                                <div onclick='transferOpen()' class='t' style='width:100%;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:1.5s;border-bottom:1px solid  #9999'>Change Class</div>
+                                <div onclick='leave()' class='t' style='width:100%;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:1.5s;border-bottom:1px solid  #9999'>Transfer School</div>

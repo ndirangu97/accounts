@@ -1,0 +1,117 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-right: 12px;
+    margin-bottom: 2px;
+    width: 150px;
+    height: 180px;
+    position: relative;
+
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+  .container p{
+    margin: 2px 0;
+  }
+  .card img{
+      width: 100%;
+      height: 64%;
+      object-fit: cover;
+  }
+  .bodySec{
+    height: 100vh;
+    max-width: 100vw !important;
+  }
+  nav{
+    height: 8% ;
+    width: 100%;
+    display: flex;
+  
+    
+  }
+  .btn{
+    margin-left: 30px;
+    width: 200px !important;
+    padding:10px 20px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    color: rgb(57, 57, 255);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-decoration: none;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+.btn2{
+  margin-left: 10px;
+  width: 200px !important;
+  padding:4px 14px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  color: rgb(57, 57, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+.btn2active{
+  margin-left: 10px;
+  width: 200px !important;
+  padding:4px 14px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  color: rgb(227, 227, 252);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 6px;
+  background: rgb(57, 57, 255) ;
+}
+#searchInput{
+  width: 400px;
+  height: 30px;
+  margin-top: 16px;
+  padding-left: 10px;
+  margin-left: 190px;
+  border: 1px solid rgb(118, 118, 241);
+  border-radius: 4px;
+}
+#searchInput:focus{
+  outline: none;
+}
+#holder{
+  margin-top: 10px;
+  height: 79%;
+  padding: 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 4px;
+  
+}
+#links{
+  height: 6%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.linksa{
+  border: 1px solid gray;
+  padding: 4px 4px;
+  margin-right: 4px;
+  text-decoration: none;
+
+}

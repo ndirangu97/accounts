@@ -25,9 +25,10 @@
         display: flex;
         height: 540px;
         width: 100%;
-       
+       flex-direction: column;
         overflow-y: hidden;
       }
+      
     </style>
   </head>
   <body>
@@ -50,47 +51,15 @@
               justify-content: space-around;
             "
           >
-            <a
-            href="./addpupil.php"
-              class="card"
-              style="
-                flex-basis: 27%;
-                width: 330px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                text-decoration: none;
-                
-              "
-            >
-            <div>  <p style="font-size: 18px;">Add Pupil </p> <img src="./images/schoolboy.png" style="height: 50px;width:50px;margin-left:20px" alt=""></div>
-           
-            </a>
-            <a
-            href="./addteacher.php"
-              class="card"
-              style="
-                flex-basis: 27%;
-                width: 330px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                text-decoration: none;
-              "
-            >
             
-            <div>  <p style="font-size: 18px;">Add Teacher </p> <img src="./images/teacher.png" style="height: 50px;width:50px;margin-left:20px" alt=""></div>
-           
-            </a>
+            
             <a
-            href="./addstaff.php
+            href="./setpayroll.php
             "
               class="card"
               style="
-                flex-basis: 27%;
-                width: 330px;
+                height:150px;
+                width: 60%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -99,21 +68,29 @@
               "
             >
               
-            <div>  <p style="font-size: 18px;">Add Staff </p> <img src="./images/teamwork.png" style="height: 50px;width:50px;margin-left:20px" alt=""></div>
+            <div>  <p style="font-size: 18px;">Add to Payroll </p> <img src="./images/teamwork.png" style="height: 50px;width:50px;margin-left:20px" alt=""></div>
            
             </a>
           </div>
           <div
-            class="rberp"
-            style="flex-basis: 50%; width: 330px;display: flex;justify-content: center;align-items: center;"
+            class="lbwrp"
+            style="
+              flex-basis: 50%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-around;
+            "
           >
-          
-            <div
-            onclick="getyearly()"
+            
+            
+            <a
+            href="./checkpayroll.php
+            "
               class="card"
               style="
-                height: 500px;
-                width: 400px;
+             height: 150px;
+                width:60%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -121,12 +98,12 @@
                 text-decoration: none;
               "
             >
+              
+            <div>  <p style="font-size: 18px;">Check Payroll </p> <img src="./images/teamwork.png" style="height: 50px;width:50px;margin-left:20px" alt=""></div>
            
-
-            <div>  <p style="font-size: 18px;">Yearly Transfer </p> <img src="./images/difficulties.png" style="height: 50px;width:50px;margin-left:20px" alt=""></div>
-           
-            </div>
+            </a>
           </div>
+          
         </div>
 
         <!-- main-panel ends -->

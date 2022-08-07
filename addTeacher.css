@@ -5,10 +5,19 @@
 .parent{
     max-height: 100vh;
     max-width: 100vw !important;
-    position: relative;
 }
 .header{
-    height: 50px;
+    display: flex;
+    align-items: center;
+    height: 10% !important;
+}
+.container{
+    height: 94%;
+    display: flex;
+    flex-direction: row;
+}
+.header{
+    height: 50px !important;
     width: 100%;
     display: flex;
     align-items: center;
@@ -32,19 +41,12 @@
       cursor: pointer;
       margin-left: 30px;
   }
-.container{
-    height: 94%;
-    display: flex;
-    flex-direction: row;
-}
 .leftContainer{
 
     flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
 }
 .rightContainer{
@@ -54,34 +56,26 @@
     height: 300px;
     width: 300px;
     border-radius: 50%;
-    margin: 30px 0 5px 0;
+    margin: 30px 0 20px 0;
    
 }
 #label{
-    padding: 6px 10px;
+    padding: 10px 10px;
     background: rgb(190, 190, 190);
     border-radius: 8px;
     color: rgb(57, 57, 255);
     cursor: pointer;
-}
-#nxt{
-    padding: 10px 14px;
-    background: rgb(190, 190, 190);
-    border-radius: 8px;
-    color: rgb(57, 57, 255);
-    cursor: pointer;
-    display: none;
-    letter-spacing: 1px;
 }
 #form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 20px !important;
+   
 }
 .input{
     width: 500px;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
     height: 24px;
     padding-left: 20px;
 }
@@ -114,62 +108,33 @@
 #dept{
     outline: none;
 }
-table{
-   border-collapse: collapse;
-   margin: 25px 40px;
-   height: 400px;
-   width: 600px;
-  
-}
-table tr,td{
-    border: 1px solid black;
-    text-align: left;
-    padding: 0 14px;
-}
-table th{
-    padding: 0 14px;
-}
-.transfer{
-
-    padding: 10px 30px;
-    background: rgb(13, 187, 13);
-    border-radius: 10px;
+.check{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 20px;
+    max-width: 500px;
+    margin-top: 8px;
     margin-bottom: 20px;
 }
-.delete{
-    padding: 10px 30px;
-    background: rgb(241, 27, 27);
-    border-radius: 10px;
-    cursor: pointer;
+input[type='checkbox']{
+    margin-left: 28px;
+    margin-right: 4px;
+
 }
-.actions{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
+.forcheck{
+    margin-left: 20px;
+    margin-top:20px !important;
+    width:64%;
+    margin-bottom:30px;
+    display:flex;
 }
-#modal{
-    position: absolute;
-    top: 30%;
-    right: 30%;
-    display: none;
-   
+.forinput{
+    margin-left: 20px;
+    display:none;
+    width:300px;
+    padding-left: 20px;
 }
-.mparent{
-  /* transform: translate(50%,50%); */
-  background: rgb(133, 133, 255);
-  height: 300px;
-  width: 600px;
-  display: flex;
-    position: relative;
-  flex-direction: column;
-  align-items: center;
-}
-.close{
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    right: 10px;
-    cursor: pointer;
-    top: 10px;
+.forinput:focus{
+    outline: none;
 }

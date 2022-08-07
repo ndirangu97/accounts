@@ -7,120 +7,137 @@ $DATA_OBJECT = json_decode($DATA_RAW);
 
 $info = (object)[];
 
-
-$DB = new Database();
-$mess = "";
-$mess2 = "";
-
+$DB=new Database();
+$mess="";
+$mess2="";
 
 
-$username = "";
-$password = "";
-$Err = "";
 
-if (!isset($_SESSION['userid'])) {
-  if (isset($DATA_OBJECT->dataType)) {
-    if ($DATA_OBJECT->dataType != "signup" && $DATA_OBJECT->dataType != "login") {
-      $info->dataType = "logout";
-      echo json_encode($info);
-      die;
-    }
-  }
+$username =""; $password = "";
+$Err="";
+
+if (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "login"){
+    include "./includes/logininclude.php";
+
+}elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "grade1") {
+    include_once "./includes/grade1Include.php";
+
+
 }
-if (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "login") {
-  include "./log.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "pupilName") {
-  include "./pupilname.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "trans") {
-  include "./trans.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "fees") {
-  include "./fees.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delfee") {
-  include "./delfee.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delstmt") {
-  include "./delstmt.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delhead") {
-  include "./delhead.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getfullfees") {
-  include "./fullfees.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "payFees") {
-  include "./payfees.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "addFees") {
-  include "./addfees.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "setFees") {
-  include_once "./setfees.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "stmt") {
-  include_once "./stmt.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "yearly") {
-  include_once "./yearly.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "import") {
-  include_once "./import.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "gethead") {
-  include_once "./gethead.php";
-} elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "deletePupil") {
-  include "./includes/deletePupil.php";
+
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "pupilName") {
+  include "./includes/pupilname.php";
+  
+
 }
- elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "reciept") {
-  include "./recieptinclude.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "nameteacher") {
+  include "./includes/teachername.php";
+
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "category") {
-  include "./categoryinclude.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "namestaff") {
+  include "./includes/nameStaff.php";
+
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "catpupilname") {
-  include "./catname.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "grad") {
+  include "./includes/grads.php";
+
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "assigncat") {
-  include "./catdesignation.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getKitchen") {
+  // include "./includes/allnamesinclude.php";
+  echo 'gg';
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delcatname") {
-  include "./delcatnameinc.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getSecurity") {
+  // include "./includes/addpupilinclude.php";
+  echo '99';
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getpplcat") {
-  include "./getpeopleinclude.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getEnvironment") {
+  // include "./includes/addteacherinclude.php";
+  echo '0';
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "pupildesigname") {
-  include "./catdesigname.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "addStaff") {
+  include "./includes/addstaffinclude.php";
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "edipupil") {
-  include "./pupilbio.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "addTeacher") {
+  include "./includes/addteacherinclude.php";
+  
 }
 elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "addPupil") {
-  include "./addpupilinclude.php";
+ 
+  include "./includes/addpupilinclude.php";
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delacppl") {
-  include "./delppl.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getroll") {
+ 
+  include "./includes/rollinclude.php";
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "delcatnameppl") {
-  include "./delpplcatcat.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "getcorrect") {
+ 
+  include "./includes/correctinclude.php";
+  
 }
-elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "rcpt") {
-  include "./gtrcptinc.php";
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "changename") {
+ 
+  include "./includes/changename.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "transferPupil") {
+  include "./includes/pupiltransfer.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "deletePupil") {
+  include "./includes/deletePupil.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "deleteTeacher") {
+  include "./includes/deleteTeacher.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "deleteStaff") {
+  include "./includes/deletestaff.php";
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "yearly") {
+  include "./includes/yearly.php";
+ 
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "leave") {
+  include "./includes/leave.php";
+ 
+  
+}
+elseif (isset($DATA_OBJECT->type) && $DATA_OBJECT->type == "setsal") {
+  include "./setsalary.php";
+ 
+  
 }
 
 
 
 
-
-
-
-function test_input($data)
-{
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-function generateuserid()
-{
-
-  $rand = "";
-  $randCount = rand(4, 60);
-  for ($i = 0; $i < $randCount; $i++) {
-
-    $r = rand(0, 9);
-    $rand .= $r;
+  
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
   }
 
-  return $rand;
-}
+  function generateuserid()
+	{
+
+		$rand = "";
+		$randCount = rand(4,60);
+		for ($i=0; $i < $randCount; $i++) { 
+			
+			$r = rand(0,9);
+			$rand .= $r;
+		}
+
+		return $rand;
+	}

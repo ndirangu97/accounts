@@ -1,40 +1,3 @@
-<?php
-require_once "./connection.php";
-$DB = new Database();
-$c= $_GET['class'];
-$s= $_GET['stream'];
-$tb="";
-$i=0;
-
-$sql=false;
-
-$sql="SELECT * FROM students WHERE class='$c' and stream='$s'";
-$res=$DB->read($sql,[]);
-if (is_array($res)) {
-    foreach ($res as $key ) {
-        $i++;
-        $tb.="
-        <tr >
-
-              <tr>
-                <th rowspan='2'>$i</th>
-                <th rowspan='2'>$key->name</th>
-                <th rowspan='2'>$key->gno</th>
-                <th rowspan='2'>$key->g2no</th>
-               
-              </tr>";
-              
-
-            
-              
-           $tb.="</tr>
-        
-        ";
-    }
-}
-
-$a="
-
 
 
 
@@ -45,7 +8,7 @@ $a="
   <!-- Required meta tags -->
   <meta charset='utf-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
-  <title>Milimani</title>
+  <title>Ngeya</title>
   <!-- base:css -->
   <link rel='stylesheet' href='vendors/typicons/typicons.css' />
   <link rel='stylesheet' href='./css/bootstrap.min.css'>
@@ -65,9 +28,9 @@ $a="
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      height: 540px;
+      height: 600px;
       width: 100%;
-      overflow-y: scroll;
+      overflow-y: hidden;
     }
     
   ::-webkit-scrollbar {
@@ -103,7 +66,7 @@ $a="
 
   .content-table th,
   .content-table td {
-    padding: 4px 15px;
+    padding: 10px 15px;
     text-align: center;
   }
 
@@ -113,7 +76,13 @@ $a="
   }
 
 
+  .content-table tbody tr:nth-last-of-type(even) {
+    background: #f5f5f5;
+  }
 
+  .content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
 
   ::-webkit-scrollbar-track {
     background: inherit;
@@ -133,19 +102,46 @@ $a="
     <div class='container-fluid page-body-wrapper'>
 
       <!-- partial -->
-      <div  style='height:100vh;width:100%;overflow:auto;display:flex;flex-direction:column;align-items:center;'>
-        <h3>MILIMANI PRIMARY CLASS $c $s</h3>
-        
+      <div  style='height:100vh;width:100%;overflow:auto;display:flex;flex-direction:column;align-items:center;padding-top:30px;'>
+        <h3>NGEYA PRIMARY ACCOUNT ACTIVITY</h3>
+        <div style='display:flex;justify-content:center;align-items:center;padding-top:15px'>
+          <h4>DATE :</h4> &nbsp; &nbsp;&nbsp;<h5>27TH JUne 2022</h5>
+        </div>
         <hr class='w-100'>
         <div class='w-75 '>
 
           <table class='content-table'>
             <thead>
-            
-              
+          
+              <tr>
+                <td>#</td>
+                <td>Name</td>
+                <td>Class</td>
+                <td>Gender</td>
+                <td>Guardian</td>
+                <td>Phone</td>
+                <td>Role</td>
+              </tr>
             </thead>
             <tbody>
-                $tb
+           <tr style='border-bottom: 1px solid black;'>
+
+              <tr>
+                <th rowspan='2'>1</th>
+                <th rowspan='2'>Hezron Hezron</th>
+                <th rowspan='2'>7C</th>
+                <th rowspan='2'>Male</th>
+                <td >John Kamau</td>
+                
+                <td >0734788832</td>
+                <td >Mother</td>
+              </tr>
+              <tr>
+                <td>Mary wanjiku</td>
+                <td>0734788832</td>
+                <td >Father</td>
+              </tr>
+           </tr>
            
            
             </tbody>
@@ -181,24 +177,3 @@ $a="
 </body>
 
 </html>
-
-
-
-";
-
-require_once "./dompdf/autoload.inc.php";
-
-use Dompdf\Dompdf;
-
-// instantiate and use the dompdf class
-$dompdf = new Dompdf();
-$dompdf->loadHtml($a);
-
-// (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
-
-// Render the HTML as PDF
-$dompdf->render();
-
-// Output the generated PDF to Browser
-$dompdf->stream("$c"."$s"."pdf", array("Attachment" => false));
